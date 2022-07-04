@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundSize: {
+        560: '560px',
         '95%': '95%',
       },
       backgroundImage: {

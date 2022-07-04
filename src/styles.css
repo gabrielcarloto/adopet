@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-shape-1 bg-no-repeat bg-95% md:bg-auto
+  @apply bg-shape-1 bg-no-repeat bg-95% md:bg-560
 }
