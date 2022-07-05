@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Popover, Transition } from '@headlessui/react';
 
-import LogoCream from '../assets/logo-cream.svg';
 import Home from '../assets/home.svg';
 import Mail from '../assets/mail.svg';
 import Logo from './Logo';
