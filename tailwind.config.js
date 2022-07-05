@@ -34,6 +34,7 @@ module.exports = {
         'brand-primary': '#3772FF',
         'brand-secondary': '#36D6AD',
         'brand-tertiary': '#FC7071',
+        'brand-coral-100': '#FF9D9E',
         'brand-cream': '#FCF0E3',
         'brand-gray-50': '#F7F7F7',
         'brand-gray-300': '#BCBCBC',
