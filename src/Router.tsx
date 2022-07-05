@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Shapes from './components/Shapes';
 import Home from './pages/Home';
+import Signup from './pages/Signup';
 
 export default function Router() {
   return (
@@ -10,6 +11,7 @@ export default function Router() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cadastro" element={<Signup />} />
       </Routes>
       <Footer />
     </Shapes>

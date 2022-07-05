@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fill-page {
+  @apply min-h-[calc(100vh-77.5px-104px)] md:min-h-[calc(100vh-94.4px-80px)] py-20 md:py-40 xl:py-12
+}
