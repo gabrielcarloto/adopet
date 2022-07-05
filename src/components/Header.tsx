@@ -5,6 +5,7 @@ import { Popover, Transition } from '@headlessui/react';
 import LogoCream from '../assets/logo-cream.svg';
 import Home from '../assets/home.svg';
 import Mail from '../assets/mail.svg';
+import Logo from './Logo';
 
 export default function Header() {
   const location = useLocation();
@@ -19,13 +20,7 @@ export default function Header() {
 
   return (
     <header className="w-full mt-12 md:mt-16 flex items-center text-white">
-      <Link to="/">
-        <img
-          className="hidden md:block w-32 ml-12 xl:ml-40"
-          src={LogoCream}
-          alt="Logo da adopet. Voltar à página inicial"
-        />
-      </Link>
+      <Logo variant="cream" classes="hidden md:block w-32 ml-12 xl:ml-40" />
       <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
         <Popover
           className="relative"
