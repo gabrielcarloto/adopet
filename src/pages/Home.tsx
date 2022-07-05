@@ -1,17 +1,13 @@
+import Logo from '../components/Logo';
 import Button from '../components/Button';
 
-import LogoCream from '../assets/logo-cream.svg';
 import CatAndDog from '../assets/cat-and-dog.png';
 
 export default function Home() {
   return (
     <main className="w-full mt-24 md:mt-48 xl:mt-7 flex flex-col items-center gap-6 md:gap-10 text-white">
       <h1>
-        <img
-          className="w-48 md:w-64 xl:w-[260px] md:mt-2"
-          src={LogoCream}
-          alt="Logo da adopet"
-        />
+        <Logo variant="cream" />
       </h1>
 
       <div className="grid gap-4 place-items-center max-w-[250px] md:max-w-[360px] xl:max-w-[488px]">
@@ -24,7 +20,7 @@ export default function Home() {
 
       <div className="grid gap-6 md:gap-4">
         <Button text="Já tenho conta" size="lg" />
-        <Button text="Quero me cadastrar" size="lg" />
+        <Button text="Quero me cadastrar" size="lg" as="a" href="/cadastro" />
       </div>
 
       <img
