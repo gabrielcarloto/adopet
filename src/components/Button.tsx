@@ -32,7 +32,7 @@ export default function Button({
 
   return (
     <As
-      classes={`bg-brand-tertiary hover:bg-brand-coral-100 focus:ring-2 focus:ring-brand-tertiary ring-offset-2 transition-colors h-10 md:h-12 grid place-items-center rounded-md text-white text-base md:text-lg font-semibold ${width}`}
+      classes={`bg-brand-tertiary hover:bg-brand-coral-100 focus:ring-2 focus:ring-brand-tertiary ring-offset-2 outline-none transition-colors h-10 md:h-12 grid place-items-center rounded-md text-white text-base md:text-lg font-semibold ${width}`}
     />
   );
 }
