@@ -5,7 +5,7 @@ import CatAndDog from '../assets/cat-and-dog.png';
 
 export default function Home() {
   return (
-    <main className="w-full mt-24 md:mt-48 xl:mt-7 flex flex-col items-center gap-6 md:gap-10 text-white">
+    <main className="w-full mt-24 md:mt-48 xl:mt-[30px] flex flex-col items-center gap-6 md:gap-10 text-white">
       <h1>
         <Logo variant="cream" />
       </h1>
