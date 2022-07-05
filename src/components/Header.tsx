@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Popover, Transition } from '@headlessui/react';
 
 import LogoCream from '../assets/logo-cream.svg';
@@ -7,8 +7,15 @@ import Home from '../assets/home.svg';
 import Mail from '../assets/mail.svg';
 
 export default function Header() {
+  const location = useLocation();
+
   const [isHomeOpen, setIsHomeOpen] = useState(false);
   const [isMailOpen, setIsMailOpen] = useState(false);
+
+  useEffect(() => {
+    setIsHomeOpen(false);
+    setIsMailOpen(false);
+  }, [location]);
 
   return (
     <header className="w-full mt-12 md:mt-16 flex items-center text-white">
