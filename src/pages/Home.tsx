@@ -1,7 +1,7 @@
-import Button from './components/Button';
+import Button from '../components/Button';
 
-import LogoCream from './assets/logo-cream.svg';
-import CatAndDog from './assets/cat-and-dog.png';
+import LogoCream from '../assets/logo-cream.svg';
+import CatAndDog from '../assets/cat-and-dog.png';
 
 export default function Home() {
   return (
