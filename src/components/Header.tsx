@@ -1,5 +1,6 @@
-import { Popover, Transition } from '@headlessui/react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Popover, Transition } from '@headlessui/react';
 
 import LogoCream from '../assets/logo-cream.svg';
 import Home from '../assets/home.svg';
@@ -11,13 +12,13 @@ export default function Header() {
 
   return (
     <header className="w-full mt-12 md:mt-16 flex items-center text-white">
-      <button>
+      <Link to="/">
         <img
           className="hidden md:block w-32 ml-12 xl:ml-40"
           src={LogoCream}
           alt="Logo da adopet. Voltar à página inicial"
         />
-      </button>
+      </Link>
       <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
         <Popover className="relative">
           <Popover.Button
@@ -26,7 +27,9 @@ export default function Header() {
             onFocus={() => setIsHomeOpen(true)}
             onBlur={() => setIsHomeOpen(false)}
           >
-            <img className="h-[23px]" src={Home} />
+            <Link to="/">
+              <img className="h-[23px]" src={Home} />
+            </Link>
           </Popover.Button>
 
           <Transition show={isHomeOpen}>
@@ -36,7 +39,7 @@ export default function Header() {
               onBlur={() => setIsHomeOpen(false)}
               static
             >
-              <a href="/">Início</a>
+              <Link to="/">Início</Link>
             </Popover.Panel>
           </Transition>
         </Popover>
