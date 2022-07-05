@@ -35,7 +35,8 @@ export default function Input({
           [
             'w-full h-10 p-2 rounded-md bg-brand-gray-50 shadow-sm text-brand-gray-500 text-center',
             'placeholder:text-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-base',
-            'placeholder:text-brand-gray-300 xl:p-3',
+            'placeholder:text-brand-gray-300 xl:p-3 focus:ring-2 focus:ring-brand-primary ring-offset-2',
+            'outline-none',
           ],
           {
             'xl:w-[552px]': isTextOrEmail,
