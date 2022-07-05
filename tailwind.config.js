@@ -3,7 +3,13 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      backgroundPosition: {
+        'right-top-5': 'right top 5rem',
+        'right-top-10': 'right top 10rem',
+        'right-top-12': 'right top 12rem',
+      },
       backgroundSize: {
+        134: '134px',
         560: '560px',
         '95%': '95%',
       },
