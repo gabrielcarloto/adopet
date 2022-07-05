@@ -27,15 +27,16 @@ export default function Header() {
         />
       </Link>
       <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
-        <Popover className="relative">
-          <Popover.Button
-            onMouseEnter={() => setIsHomeOpen(true)}
-            onMouseLeave={() => setIsHomeOpen(false)}
-            onFocus={() => setIsHomeOpen(true)}
-            onBlur={() => setIsHomeOpen(false)}
-          >
+        <Popover
+          className="relative"
+          onMouseEnter={() => setIsHomeOpen(true)}
+          onMouseLeave={() => setIsHomeOpen(false)}
+          onFocus={() => setIsHomeOpen(true)}
+          onBlur={() => setIsHomeOpen(false)}
+        >
+          <Popover.Button>
             <Link to="/">
-              <img className="h-[23px]" src={Home} />
+              <img className="h-[23px]" src={Home} alt="Início" />
             </Link>
           </Popover.Button>
 
@@ -49,24 +50,25 @@ export default function Header() {
             leaveTo="opacity-0 absolute top-0 rotate-y-40"
           >
             <Popover.Panel
-              className="w-min p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
-              onFocus={() => setIsHomeOpen(true)}
-              onBlur={() => setIsHomeOpen(false)}
+              className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
               static
             >
-              <Link to="/">Início</Link>
+              <Link to="/">Voltar à página inicial</Link>
             </Popover.Panel>
           </Transition>
         </Popover>
 
-        <Popover className="relative">
-          <Popover.Button
-            onMouseEnter={() => setIsMailOpen(true)}
-            onMouseLeave={() => setIsMailOpen(false)}
-            onFocus={() => setIsMailOpen(true)}
-            onBlur={() => setIsMailOpen(false)}
-          >
-            <img className="h-[23px]" src={Mail} />
+        <Popover
+          className="relative"
+          onMouseEnter={() => setIsMailOpen(true)}
+          onMouseLeave={() => setIsMailOpen(false)}
+          onFocus={() => setIsMailOpen(true)}
+          onBlur={() => setIsMailOpen(false)}
+        >
+          <Popover.Button>
+            <Link to="#">
+              <img className="h-[23px]" src={Mail} alt="Mensagens" />
+            </Link>
           </Popover.Button>
 
           <Transition
@@ -79,12 +81,10 @@ export default function Header() {
             leaveTo="opacity-0 absolute top-0 rotate-y-40"
           >
             <Popover.Panel
-              className="w-min p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
-              onFocus={() => setIsMailOpen(true)}
-              onBlur={() => setIsMailOpen(false)}
+              className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
               static
             >
-              <a href="#">Mensagens</a>
+              <a href="#">Ver mensagens</a>
             </Popover.Panel>
           </Transition>
         </Popover>
