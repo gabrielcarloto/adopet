@@ -39,7 +39,15 @@ export default function Header() {
             </Link>
           </Popover.Button>
 
-          <Transition show={isHomeOpen}>
+          <Transition
+            show={isHomeOpen}
+            enter="transition-all duration-150"
+            enterFrom="opacity-0 absolute top-0 rotate-y-40"
+            enterTo="opacity-100 absolute top-0 rotate-y-0"
+            leave="transition-all duration-150"
+            leaveFrom="opacity-100 absolute top-0 rotate-y-0"
+            leaveTo="opacity-0 absolute top-0 rotate-y-40"
+          >
             <Popover.Panel
               className="w-min p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
               onFocus={() => setIsHomeOpen(true)}
@@ -61,7 +69,15 @@ export default function Header() {
             <img className="h-[23px]" src={Mail} />
           </Popover.Button>
 
-          <Transition show={isMailOpen}>
+          <Transition
+            show={isMailOpen}
+            enter="transition-all duration-150"
+            enterFrom="opacity-0 absolute top-0 rotate-y-40"
+            enterTo="opacity-100 absolute top-0 rotate-y-0"
+            leave="transition-all duration-150"
+            leaveFrom="opacity-100 absolute top-0 rotate-y-0"
+            leaveTo="opacity-0 absolute top-0 rotate-y-40"
+          >
             <Popover.Panel
               className="w-min p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
               onFocus={() => setIsMailOpen(true)}
