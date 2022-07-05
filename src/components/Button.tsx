@@ -11,7 +11,7 @@ export default function Button({ size, text }: ButtonProps) {
 
   return (
     <button
-      className={`bg-brand-tertiary h-10 md:h-12 rounded-md text-base md:text-lg font-semibold ${width}`}
+      className={`bg-brand-tertiary h-10 md:h-12 rounded-md text-white text-base md:text-lg font-semibold ${width}`}
     >
       {text}
     </button>
