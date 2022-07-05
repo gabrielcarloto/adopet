@@ -12,7 +12,7 @@ export default function Shapes({ children }: { children: ReactNode }) {
   return (
     <div
       className={classNames(
-        'w-screen max-w-full min-h-screen bg-shape-1 bg-no-repeat bg-350 md:bg-560',
+        'w-screen max-w-full min-h-screen bg-shape-1 bg-no-repeat bg-350 md:bg-560 transition-colors duration-75',
         {
           'bg-brand-primary': isHomePage,
         },
