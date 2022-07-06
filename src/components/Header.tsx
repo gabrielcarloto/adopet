@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Popover, Transition } from '@headlessui/react';
+import { Menu, Popover, Transition } from '@headlessui/react';
 
 import Home from '../assets/home.svg';
 import Mail from '../assets/mail.svg';
+import User from '../assets/user.svg';
 import Logo from './Logo';
 
 export default function Header() {
@@ -16,6 +17,14 @@ export default function Header() {
     setIsHomeOpen(false);
     setIsMailOpen(false);
   }, [location]);
+
+  const isLoggedIn = true;
+  const routesUserShouldNotAppear =
+    location.pathname === '/' ||
+    location.pathname === '/cadastro' ||
+    location.pathname === '/login';
+
+  const shouldUserBeVisible = isLoggedIn && !routesUserShouldNotAppear;
 
   return (
     <header className="w-full mt-12 md:mt-16 flex flex-initial items-center text-white">
@@ -83,6 +92,26 @@ export default function Header() {
           </Transition>
         </Popover>
       </div>
+      {shouldUserBeVisible && (
+        <Menu>
+          <div className="relative flex-1 mr-10 xl:mr-44 grid place-items-end">
+            <Menu.Button>
+              <img className="w-10" src={User} alt="Usuário" />
+            </Menu.Button>
+            <Menu.Items className="absolute top-11 w-max rounded shadow-lg bg-white text-brand-primary text-sm flex flex-col items-center">
+              <Menu.Item>
+                <Link to="#" className="p-1">
+                  Perfil
+                </Link>
+              </Menu.Item>
+              {/* <hr className="w-full border-brand-primary" />
+            <Link to="#" className="p-1">
+              Outro link
+            </Link> */}
+            </Menu.Items>
+          </div>
+        </Menu>
+      )}
     </header>
   );
 }
