@@ -7,6 +7,7 @@ specifiers:
   '@vitejs/plugin-react': ^1.3.0
   autoprefixer: ^10.4.7
   classnames: ^2.3.1
+  lottie-react: ^2.3.1
   postcss: ^8.4.14
   react: ^18.0.0
   react-dom: ^18.0.0
@@ -18,6 +19,7 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.6.5_biqbaboplfbrettd7655fr4n2y
   classnames: 2.3.1
+  lottie-react: 2.3.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
@@ -959,6 +961,21 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: false
+
+  /lottie-react/2.3.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-8cxd6XZZtECT6LoAhCftRdYrEpHxiouvB5EPiYA+TtCG5LHNYAdMS9IVIHcxKtWnpo7x16QfCLj1XLXZpaN81A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lottie-web: 5.9.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /lottie-web/5.9.6:
+    resolution: {integrity: sha512-JFs7KsHwflugH5qIXBpB4905yC1Sub2MZWtl/elvO/QC6qj1ApqbUZJyjzJseJUtVpgiDaXQLjBlIJGS7UUUXA==}
     dev: false
 
   /merge2/1.4.1:
