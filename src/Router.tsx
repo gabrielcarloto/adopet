@@ -9,13 +9,15 @@ import Signup from './pages/Signup';
 export default function Router() {
   return (
     <Shapes>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cadastro" element={<Signup />} />
-        <Route path="/login" element={<Signin />} />
-      </Routes>
-      <Footer />
+      <div className="flex flex-col w-screen max-w-full min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cadastro" element={<Signup />} />
+          <Route path="/login" element={<Signin />} />
+        </Routes>
+        <Footer />
+      </div>
     </Shapes>
   );
 }

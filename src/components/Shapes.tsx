@@ -33,9 +33,7 @@ export default function Shapes({ children }: { children: ReactNode }) {
               isSignInOrUpPage,
           })}
         >
-          <div className="flex flex-col w-screen max-w-full min-h-screen">
-            {children}
-          </div>
+          {children}
         </div>
       </div>
     </div>
