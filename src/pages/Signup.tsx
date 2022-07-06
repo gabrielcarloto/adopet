@@ -4,8 +4,8 @@ import Logo from '../components/Logo';
 
 export default function Signup() {
   return (
-    <main className="fill-page flex flex-col gap-6 md:gap-10 xl:gap-12 items-center">
-      <h1>
+    <main className="flex-auto py-20 md:py-40 xl:py-12 2xl:py-0 flex flex-col gap-6 md:gap-10 xl:gap-12 items-center">
+      <h1 className="mt-auto">
         <Logo variant="blue" />
       </h1>
 
@@ -16,7 +16,7 @@ export default function Signup() {
         </p>
       </div>
 
-      <form className="flex flex-col items-center gap-5 md:gap-6">
+      <form className="flex flex-col items-center gap-5 md:gap-6 mb-auto">
         <Input
           type="text"
           label="Nome"
