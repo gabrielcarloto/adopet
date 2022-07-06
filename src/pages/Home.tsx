@@ -19,7 +19,7 @@ export default function Home() {
       </div>
 
       <div className="grid gap-6 md:gap-4">
-        <Button text="Já tenho conta" size="lg" />
+        <Button text="Já tenho conta" size="lg" as="a" href="/login" />
         <Button text="Quero me cadastrar" size="lg" as="a" href="/cadastro" />
       </div>
 

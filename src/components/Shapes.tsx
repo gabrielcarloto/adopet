@@ -7,7 +7,7 @@ export default function Shapes({ children }: { children: ReactNode }) {
 
   const isHomePage = location.pathname === '/';
   const isSignInOrUpPage =
-    location.pathname === '/cadastro' || location.pathname === 'login';
+    location.pathname === '/cadastro' || location.pathname === '/login';
 
   return (
     <div
