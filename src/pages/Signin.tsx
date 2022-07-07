@@ -4,7 +4,7 @@ import Logo from '../components/Logo';
 
 export default function Signin() {
   return (
-    <main className="flex-auto py-20 md:py-40 xl:py-12 flex flex-col gap-12 md:gap-10 xl:gap-20 items-center">
+    <main className="flex-auto m-header flex flex-col gap-12 md:gap-10 xl:gap-20 items-center">
       <h1>
         <Logo variant="blue" />
       </h1>

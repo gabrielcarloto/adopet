@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.m-header {
+  @apply mt-[84px] md:mt-[160px] xl:mt-11
+}
+
 .rotate-y-0 {
   transform: rotateY(0deg);
 }
