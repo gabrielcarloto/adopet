@@ -36,8 +36,8 @@ export default function Header() {
           onBlur={() => setIsHomeOpen(false)}
         >
           <Popover.Button>
-            <Link to="/">
-              <HomeIcon className="h-[23px]" aria-label="Início" />
+            <Link to="/pets">
+              <HomeIcon className="h-[23px]" aria-label="Pets" />
             </Link>
           </Popover.Button>
 
@@ -54,7 +54,7 @@ export default function Header() {
               className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
               static
             >
-              <Link to="/">Voltar à página inicial</Link>
+              <Link to="/pets">Ver amigos disponíveis para adoção</Link>
             </Popover.Panel>
           </Transition>
         </Popover>
