@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <header className="w-full mt-12 md:mt-16 flex flex-initial items-center text-white">
-      <Logo variant="cream" classes="hidden md:block w-32 ml-12 xl:ml-40" />
+      <Logo variant="cream" className="hidden md:block w-32 ml-12 xl:ml-40" />
       <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
         <Popover
           className="relative"
