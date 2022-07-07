@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, Popover, Transition } from '@headlessui/react';
 
-import Home from '../assets/home.svg';
-import Mail from '../assets/mail.svg';
-import User from '../assets/user.svg';
+import { HomeIcon, MailIcon, UserIcon } from './Icons';
 import Logo from './Logo';
 
 export default function Header() {
@@ -39,7 +37,7 @@ export default function Header() {
         >
           <Popover.Button>
             <Link to="/">
-              <img className="h-[23px]" src={Home} alt="Início" />
+              <HomeIcon className="h-[23px]" aria-label="Início" />
             </Link>
           </Popover.Button>
 
@@ -70,7 +68,7 @@ export default function Header() {
         >
           <Popover.Button>
             <Link to="#">
-              <img className="h-[23px]" src={Mail} alt="Mensagens" />
+              <MailIcon className="h-[23px]" aria-label="Mensagens" />
             </Link>
           </Popover.Button>
 
@@ -96,7 +94,7 @@ export default function Header() {
         <Menu>
           <div className="relative flex-1 mr-10 xl:mr-44 grid place-items-end">
             <Menu.Button>
-              <img className="w-10" src={User} alt="Usuário" />
+              <UserIcon className="w-10" aria-label="Usuário" />
             </Menu.Button>
             <Menu.Items className="absolute top-11 w-max rounded shadow-lg bg-white text-brand-primary text-sm flex flex-col items-center">
               <Menu.Item>
