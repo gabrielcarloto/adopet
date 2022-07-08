@@ -1,11 +1,17 @@
 import { CSSProperties, InputHTMLAttributes, useId, useState } from 'react';
-import classNames from 'classnames';
 import { LottieOptions, useLottie } from 'lottie-react';
+import classNames from 'classnames';
 
 import visibilityAnimation from '../assets/visibility.json';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps
+  extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  as?: 'textarea' | 'input';
+  height?: 'md' | 'lg';
   label: string;
+  labelPosition?: 'start' | 'center';
+  labelColor?: 'brand-primary' | 'brand-gray-500';
+  backgroundColor?: 'white' | 'brand-gray-50';
 }
 
 const lottieStyle: CSSProperties = {
@@ -18,17 +24,30 @@ const lottieOptions: LottieOptions = {
   loop: false,
 };
 
-export default function Input(props: InputProps) {
+export default function Input({
+  as = 'input',
+  type = 'text',
+  height = 'md',
+  labelPosition = 'center',
+  labelColor = 'brand-gray-500',
+  backgroundColor = 'brand-gray-50',
+  ...props
+}: InputProps) {
   const [isPassVisible, setIsPassVisible] = useState<null | boolean>(
-    props.type === 'password' ? false : null,
+    type === 'password' ? false : null,
   );
 
   const inputId = useId();
 
   const LottieVisibility = useLottie(lottieOptions, lottieStyle);
 
-  const isTextOrEmail = props.type === 'text' || props.type === 'email';
+  const isTextarea = as === 'textarea';
+  const isTextOrEmail = type === 'text' || type === 'email';
   const isPassword = isPassVisible || isPassVisible === false;
+  const isLabelLeft = labelPosition === 'start';
+  const isBgWhite = backgroundColor === 'white';
+
+  const As = as;
 
   function handleChangePassVisibility() {
     setIsPassVisible(!isPassVisible);
@@ -43,32 +62,49 @@ export default function Input(props: InputProps) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div
+      className={classNames('flex flex-col gap-2', {
+        [`items-${labelPosition}`]: labelPosition,
+      })}
+    >
       <label
-        className="text-base md:text-lg xl:font-semibold text-brand-gray-500"
+        className={classNames('text-base md:text-lg xl:font-semibold', {
+          [`text-${labelColor}`]: labelColor,
+        })}
         htmlFor={inputId}
       >
         {props.label}
       </label>
-      <div className="relative grid place-items-center">
-        <input
+      <div
+        className={classNames('relative grid place-items-center', {
+          'w-full': isLabelLeft,
+          'xl:w-[552px]': isTextOrEmail && !isLabelLeft,
+          'xl:w-[362px]': !isTextOrEmail && !isPassword && !isLabelLeft,
+        })}
+      >
+        <As
           className={classNames(
             [
-              'h-10 rounded-md bg-brand-gray-50 shadow-sm text-brand-gray-500 text-center',
-              'placeholder:text-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-base',
-              'placeholder:text-brand-gray-300 focus:ring-2 focus:ring-brand-primary ring-offset-2',
-              'outline-none',
+              'w-full rounded-md shadow-sm placeholder:text-xs md:placeholder:text-sm',
+              'xl:placeholder:text-base placeholder:text-brand-gray-300 focus:ring-2',
+              'focus:ring-brand-primary ring-offset-2 outline-none',
             ],
             {
-              'xl:w-[552px]': isTextOrEmail,
-              'xl:w-[362px]': !isTextOrEmail && !isPassword,
+              [`bg-${backgroundColor}`]: backgroundColor,
+              [isTextarea
+                ? 'min-h-[172px] resize-none'
+                : height === 'md'
+                ? 'h-10'
+                : 'h-12']: as,
+              [`text-brand-gray-${isBgWhite ? '300' : '500'}`]: isBgWhite,
+              [`text-${isLabelLeft ? 'left' : 'center'}`]: labelPosition,
               'p-2 xl:p-3': !isPassword,
               'pl-2 pr-10 xl:pl-3 xl:pr-12 w-[calc(100%-32px)] xl:w-[318px]':
                 isPassword,
             },
           )}
           id={inputId}
-          type={isPassword ? (isPassVisible ? 'text' : 'password') : props.type}
+          type={isPassword ? (isPassVisible ? 'text' : 'password') : type}
           {...props}
         />
         {isPassword && (
