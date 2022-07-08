@@ -2,7 +2,7 @@
   <img src="https://ik.imagekit.io/698xlahbaqz/Logos-03_vdyCkQ9Bw.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657315716722" alt="Logo da adopet" width="50%" />
 </h1>
 
-<h3>
+<h3 align="center">
   <a href="http://adopet-lovat.vercel.app/">Access the preview</a>
 </h3>
 
