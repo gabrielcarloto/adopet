@@ -3,7 +3,7 @@ import { UserIcon } from '../components/Icons';
 import Input from '../components/Input';
 
 export default function Contact() {
-  const userHasPhoto = false;
+  const userHasPhoto = true;
 
   return (
     <main className="flex-auto m-header mb-4 md:mb-[91px] xl:mb-8 px-6 md:px-[122px] xl:px-[444px] flex flex-col items-center">
