@@ -1,16 +1,11 @@
-import { CSSProperties, HTMLInputTypeAttribute, useId, useState } from 'react';
+import { CSSProperties, InputHTMLAttributes, useId, useState } from 'react';
 import classNames from 'classnames';
 import { LottieOptions, useLottie } from 'lottie-react';
 
 import visibilityAnimation from '../assets/visibility.json';
 
-interface InputProps {
-  type: HTMLInputTypeAttribute;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  placeholder: string;
-  required?: boolean;
-  minLength?: number;
-  maxLength?: number;
 }
 
 const lottieStyle: CSSProperties = {
@@ -23,23 +18,16 @@ const lottieOptions: LottieOptions = {
   loop: false,
 };
 
-export default function Input({
-  type,
-  label,
-  placeholder,
-  required = false,
-  minLength,
-  maxLength,
-}: InputProps) {
+export default function Input(props: InputProps) {
   const [isPassVisible, setIsPassVisible] = useState<null | boolean>(
-    type === 'password' ? false : null,
+    props.type === 'password' ? false : null,
   );
 
   const inputId = useId();
 
   const LottieVisibility = useLottie(lottieOptions, lottieStyle);
 
-  const isTextOrEmail = type === 'text' || type === 'email';
+  const isTextOrEmail = props.type === 'text' || props.type === 'email';
   const isPassword = isPassVisible || isPassVisible === false;
 
   function handleChangePassVisibility() {
@@ -60,7 +48,7 @@ export default function Input({
         className="text-base md:text-lg xl:font-semibold text-brand-gray-500"
         htmlFor={inputId}
       >
-        {label}
+        {props.label}
       </label>
       <div className="relative grid place-items-center">
         <input
@@ -80,11 +68,8 @@ export default function Input({
             },
           )}
           id={inputId}
-          type={isPassword ? (isPassVisible ? 'text' : 'password') : type}
-          placeholder={placeholder}
-          required={required}
-          minLength={minLength}
-          maxLength={maxLength}
+          type={isPassword ? (isPassVisible ? 'text' : 'password') : props.type}
+          {...props}
         />
         {isPassword && (
           <button
