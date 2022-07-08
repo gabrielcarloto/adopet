@@ -36,14 +36,16 @@ export default function Pet({
         alt=""
       />
 
-      <section className="grid gap-2">
-        <h1 className="text-base text-brand-primary font-semibold">{name}</h1>
+      <div className="grid gap-2">
+        <strong className="text-base text-brand-primary font-semibold">
+          {name}
+        </strong>
         <div className="leading-5">
           <p>{description.age} anos</p>
           <p>Porte {description.size}</p>
           <p>{description.behaviour}</p>
         </div>
-      </section>
+      </div>
 
       <footer className="grid gap-2">
         <p className="text-xs">{location}</p>
