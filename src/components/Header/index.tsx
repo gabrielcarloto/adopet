@@ -23,7 +23,7 @@ export default function Header() {
       </Popover>
 
       <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
-        <Popover label="Ver amigos disponíveis para adoção" to="/pets">
+        <Popover label="Ver pets disponíveis para adoção" to="/pets">
           <HomeIcon className="h-[23px]" aria-label="Pets" />
         </Popover>
 
