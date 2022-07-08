@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Shapes from './components/Shapes';
+import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Pets from './pages/Pets';
 import Signin from './pages/Signin';
@@ -17,6 +18,7 @@ export default function Router() {
           <Route path="/cadastro" element={<Signup />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/pets" element={<Pets />} />
+          <Route path="/contato" element={<Contact />} />
         </Routes>
         <Footer />
       </div>
