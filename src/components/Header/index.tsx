@@ -39,7 +39,7 @@ export default function Header() {
             </Menu.Button>
             <Menu.Items className="absolute top-11 w-max rounded shadow-lg bg-white text-brand-primary text-sm flex flex-col items-center">
               <Menu.Item>
-                <Link to="#" className="p-1">
+                <Link to="/perfil" className="p-1">
                   Perfil
                 </Link>
               </Menu.Item>

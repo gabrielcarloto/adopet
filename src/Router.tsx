@@ -5,6 +5,7 @@ import Shapes from './components/Shapes';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Pets from './pages/Pets';
+import Profile from './pages/Profile';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 
@@ -19,6 +20,7 @@ export default function Router() {
           <Route path="/login" element={<Signin />} />
           <Route path="/pets" element={<Pets />} />
           <Route path="/contato" element={<Contact />} />
+          <Route path="/perfil" element={<Profile />} />
         </Routes>
         <Footer />
       </div>
