@@ -31,6 +31,7 @@ export default function Input({
   labelPosition = 'center',
   labelColor = 'brand-gray-500',
   backgroundColor = 'brand-gray-50',
+  children,
   ...props
 }: InputProps) {
   const [isPassVisible, setIsPassVisible] = useState<null | boolean>(
@@ -44,6 +45,7 @@ export default function Input({
   const isTextarea = as === 'textarea';
   const isTextOrEmail = type === 'text' || type === 'email';
   const isPassword = isPassVisible || isPassVisible === false;
+  const isFile = type === 'file';
   const isLabelLeft = labelPosition === 'start';
   const isBgWhite = backgroundColor === 'white';
 
@@ -78,10 +80,12 @@ export default function Input({
       <div
         className={classNames('relative grid place-items-center', {
           'w-full': isLabelLeft,
-          'xl:w-[552px]': isTextOrEmail && !isLabelLeft,
-          'xl:w-[362px]': !isTextOrEmail && !isPassword && !isLabelLeft,
+          'xl:w-[552px]': isTextOrEmail && !isLabelLeft && !isFile,
+          'xl:w-[362px]':
+            !isTextOrEmail && !isPassword && !isLabelLeft && !isFile,
         })}
       >
+        {isFile && children}
         <As
           className={classNames(
             [
@@ -101,6 +105,7 @@ export default function Input({
               'p-2 xl:p-3': !isPassword,
               'pl-2 pr-10 xl:pl-3 xl:pr-12 w-[calc(100%-32px)] xl:w-[318px]':
                 isPassword,
+              'h-full opacity-0 absolute top-0 left-0 cursor-pointer': isFile,
             },
           )}
           id={inputId}
@@ -120,6 +125,11 @@ export default function Input({
           </button>
         )}
       </div>
+      {isFile && (
+        <span className="w-full mt-1 md:mt-2 text-center text-xs md:text-sm text-brand-tertiary">
+          Clique na foto para editar
+        </span>
+      )}
     </div>
   );
 }
