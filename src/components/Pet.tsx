@@ -28,7 +28,7 @@ export default function Pet({
         'focus:ring-brand-primary ring-offset-2 hover:shadow-md outline-none transition-all',
         'transform hover:-translate-y-1',
       )}
-      to="#"
+      to="/contato"
     >
       <img
         className="col-span-1 row-span-2 self-center justify-self-center"
@@ -49,14 +49,14 @@ export default function Pet({
 
       <footer className="grid gap-2">
         <p className="text-xs">{location}</p>
-        <button
+        <a
           className={classNames(
             'group p-1 rounded flex gap-2 text-[10px] xl:group-hover:font-bold xl:hover:font-bold',
             'xl:group-focus:font-bold xl:focus:font-bold group-focus:bg-brand-secondary focus:text-white',
             'focus:ring-2 focus:ring-brand-primary ring-offset-1 outline-none group-hover:bg-brand-secondary',
             ' focus:bg-brand-secondary group-hover:text-brand-gray-50 group-focus:text-brand-gray-50 transition-all',
           )}
-          type="button"
+          href="/contato"
         >
           <svg
             width="18"
@@ -71,7 +71,7 @@ export default function Pet({
             />
           </svg>
           <span>Falar com o responsável</span>
-        </button>
+        </a>
       </footer>
     </Link>
   );
