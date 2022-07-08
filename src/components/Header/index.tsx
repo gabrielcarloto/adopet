@@ -17,7 +17,7 @@ export default function Header() {
   const shouldUserBeVisible = isLoggedIn && !routesUserShouldNotAppear;
 
   return (
-    <header className="w-screen max-w-full mt-12 md:mt-16 md:pl-12 xl:pl-40 flex flex-initial items-center text-white">
+    <header className="w-screen max-w-full h-10 mt-12 md:mt-16 md:pl-12 xl:pl-40 flex flex-initial items-center text-white">
       <Popover label="Voltar à página inicial" to="/">
         <Logo variant="cream" className="hidden md:block w-32" />
       </Popover>
