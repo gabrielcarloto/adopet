@@ -26,7 +26,8 @@ export default function Pet({
         'w-full p-4 group bg-brand-gray-50 grid grid-cols-2 grid-flow-row gap-4 text-sm',
         'text-brand-gray-500 focus:text-zinc-600 hover:text-zinc-600 focus:ring-2',
         'focus:ring-brand-primary ring-offset-2 hover:shadow-md outline-none transition-all',
-        'transform hover:-translate-y-1',
+        'transform hover:-translate-y-1 border-2 border-transparent hover:bg-white',
+        'hover:border-brand-secondary',
       )}
       to="/contato"
     >
