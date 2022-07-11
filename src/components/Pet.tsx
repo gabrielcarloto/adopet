@@ -55,7 +55,7 @@ export default function Pet({
             'group p-1 rounded flex gap-2 text-[10px] xl:group-hover:font-bold xl:hover:font-bold',
             'xl:group-focus:font-bold xl:focus:font-bold group-focus:bg-brand-secondary focus:text-white',
             'focus:ring-2 focus:ring-brand-primary ring-offset-1 outline-none group-hover:bg-brand-secondary',
-            ' focus:bg-brand-secondary group-hover:text-brand-gray-50 group-focus:text-brand-gray-50 transition-all',
+            'focus:bg-brand-secondary group-hover:text-brand-gray-50 group-focus:text-brand-gray-50 transition-all',
           )}
           href="/contato"
         >
