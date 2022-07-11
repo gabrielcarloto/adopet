@@ -1,25 +1,18 @@
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import Dunga from '../assets/dunga.png';
-
 interface PetProps {
-  name?: string;
-  image?: string;
-  description?: {
-    age: number;
+  name: string;
+  image: string;
+  description: {
+    age: string;
     size: string;
     behaviour: string;
   };
-  location?: string;
+  location: string;
 }
 
-export default function Pet({
-  name = 'Dunga',
-  image = Dunga,
-  description = { age: 2, size: 'pequeno', behaviour: 'Calmo e educado' },
-  location = 'Rio de Janeiro (RJ)',
-}: PetProps) {
+export default function Pet({ name, image, description, location }: PetProps) {
   return (
     <Link
       className={classNames(
@@ -42,7 +35,7 @@ export default function Pet({
           {name}
         </strong>
         <div className="leading-5">
-          <p>{description.age} anos</p>
+          <p>{description.age}</p>
           <p>Porte {description.size}</p>
           <p>{description.behaviour}</p>
         </div>
