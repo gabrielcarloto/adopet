@@ -1,7 +1,108 @@
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { gql, useQuery } from '@apollo/client';
+import { Combobox } from '@headlessui/react';
+import classNames from 'classnames';
 import Button from '../components/Button';
 import Input from '../components/Input';
 
+const GET_PETS_QUERY = gql`
+  query Pets {
+    pets {
+      id
+      name
+      location
+    }
+  }
+`;
+
+const GET_PET_BY_ID_QUERY = gql`
+  query Pet($id: ID) {
+    pet(where: { id: $id }) {
+      name
+    }
+  }
+`;
+
+interface GetPetsQueryResponse {
+  pets: [
+    pet: {
+      id: string;
+      name: string;
+      location: string;
+    },
+  ];
+}
+
+interface GetPetByIDQueryResponse {
+  pet: {
+    name: string;
+  };
+}
+
+interface SelectedPet {
+  id: string;
+  name: string;
+}
+
 export default function Contact() {
+  const [searchParams, _setSearchParams] = useSearchParams();
+  const id = searchParams.get('id');
+
+  const [getPets, setGetPets] = useState(!id);
+  const [pets, setPets] = useState<GetPetsQueryResponse['pets'] | undefined>();
+  const [selectedPet, setSelectedPet] = useState<SelectedPet>({
+    id: '',
+    name: '',
+  });
+
+  const [petNameQuery, setPetNameQuery] = useState<string>('');
+
+  const loadingView = (
+    <div className="flex-auto grid place-items-center">Carregando...</div>
+  );
+
+  if (id && !getPets) {
+    const { data } = useQuery<GetPetByIDQueryResponse>(GET_PET_BY_ID_QUERY, {
+      variables: {
+        id,
+      },
+    });
+
+    useEffect(() => {
+      if (!data) return;
+
+      if (!data.pet) {
+        setGetPets(true);
+        return;
+      }
+
+      setSelectedPet({ id, name: data.pet.name });
+    }, [data]);
+
+    if (!data) {
+      return loadingView;
+    }
+  } else {
+    const { data } = useQuery<GetPetsQueryResponse>(GET_PETS_QUERY);
+
+    useEffect(() => {
+      if (!data) return;
+      data.pets && setPets(data.pets);
+    }, [data]);
+
+    if (!data) {
+      return loadingView;
+    }
+  }
+
+  const filteredPets =
+    petNameQuery === ''
+      ? pets
+      : pets?.filter((pet) => {
+          return pet.name.toLowerCase().includes(petNameQuery.toLowerCase());
+        });
+
   return (
     <main className="flex-auto m-header mb-4 md:mb-[91px] xl:mb-8 px-6 md:px-[122px] xl:px-[444px] flex flex-col items-center">
       <h1 className="md:text-lg text-brand-primary text-center max-w-[226px] md:max-w-full xl:max-w-[90%]">
@@ -30,15 +131,46 @@ export default function Contact() {
             placeholder="Insira seu telefone e/ou whatsapp"
             required
           />
-          <Input
-            label="Nome do animal"
-            height="lg"
-            backgroundColor="white"
-            labelPosition="start"
-            labelColor="brand-primary"
-            placeholder="Por qual animal você se interessou?"
-            required
-          />
+          <Combobox
+            as="div"
+            className="flex flex-col gap-2 items-start relative"
+            value={selectedPet}
+            onChange={setSelectedPet}
+            disabled={!getPets}
+          >
+            <Combobox.Label className="text-base md:text-lg xl:font-semibold text-brand-primary">
+              Nome do animal
+            </Combobox.Label>
+            <Combobox.Input
+              className={classNames(
+                'h-12 w-full bg-white rounded-md shadow-sm placeholder:text-xs md:placeholder:text-sm',
+                'xl:placeholder:text-base placeholder:text-brand-gray-300 focus:ring-2',
+                'focus:ring-brand-primary ring-offset-2 outline-none disabled:text-brand-gray-500',
+                'p-2 xl:p-3',
+              )}
+              placeholder="Por qual animal você se interessou?"
+              value={petNameQuery}
+              displayValue={(pet: SelectedPet) => pet.name}
+              onChange={(e) => setPetNameQuery(e.target.value)}
+            />
+            <Combobox.Options className="w-full py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white shadow-md">
+              {filteredPets?.map((pet) => (
+                <Combobox.Option
+                  className={classNames(
+                    'px-4 py-1 md:px-4 md:py-2 text-base group text-brand-gray-500 hover:text-zinc-900 hover:bg-brand-gray-50 cursor-pointer',
+                    'transition-colors flex justify-between items-center',
+                  )}
+                  value={pet}
+                  key={pet.id}
+                >
+                  <span>{pet.name}</span>
+                  <span className="text-sm text-brand-gray-300 group-hover:text-zinc-900 transition-colors">
+                    {pet.location}
+                  </span>
+                </Combobox.Option>
+              ))}
+            </Combobox.Options>
+          </Combobox>
           <Input
             as="textarea"
             backgroundColor="white"

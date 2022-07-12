@@ -20,6 +20,7 @@ export default function Router() {
           <Route path="/login" element={<Signin />} />
           <Route path="/pets" element={<Pets />} />
           <Route path="/contato" element={<Contact />} />
+          <Route path="/contato/:id" element={<Contact />} />
           <Route path="/perfil" element={<Profile />} />
         </Routes>
         <Footer />

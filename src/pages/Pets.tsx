@@ -46,6 +46,7 @@ export default function Pets() {
         {data?.pets.map((pet) => (
           <Pet
             key={pet.id}
+            id={pet.id}
             name={pet.name}
             image={pet.image.url}
             description={pet.description}

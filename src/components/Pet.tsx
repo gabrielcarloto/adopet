@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 interface PetProps {
+  id: string;
   name: string;
   image: string;
   description: {
@@ -12,7 +13,13 @@ interface PetProps {
   location: string;
 }
 
-export default function Pet({ name, image, description, location }: PetProps) {
+export default function Pet({
+  id,
+  name,
+  image,
+  description,
+  location,
+}: PetProps) {
   return (
     <Link
       className={classNames(
@@ -22,7 +29,7 @@ export default function Pet({ name, image, description, location }: PetProps) {
         'transform hover:-translate-y-1 border-2 border-transparent hover:bg-white',
         'hover:border-brand-secondary',
       )}
-      to="/contato"
+      to={`/contato?id=${id}`}
     >
       <img
         className="col-span-1 row-span-2 self-center justify-self-center"
@@ -50,7 +57,7 @@ export default function Pet({ name, image, description, location }: PetProps) {
             'focus:ring-2 focus:ring-brand-primary ring-offset-1 outline-none group-hover:bg-brand-secondary',
             'focus:bg-brand-secondary group-hover:text-brand-gray-50 group-focus:text-brand-gray-50 transition-all',
           )}
-          href="/contato"
+          href={`/contato/${id}`}
         >
           <svg
             width="18"
