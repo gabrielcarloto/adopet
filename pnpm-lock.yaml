@@ -12,6 +12,7 @@ specifiers:
   lottie-react: ^2.3.1
   postcss: ^8.4.14
   react: ^18.0.0
+  react-cool-onclickoutside: ^1.7.0
   react-dom: ^18.0.0
   react-router-dom: ^6.3.0
   tailwindcss: ^3.1.4
@@ -25,6 +26,7 @@ dependencies:
   graphql: 16.5.0
   lottie-react: 2.3.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
+  react-cool-onclickoutside: 1.7.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
 
@@ -1225,6 +1227,14 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
+
+  /react-cool-onclickoutside/1.7.0_react@18.2.0:
+    resolution: {integrity: sha512-HVZK2155Unee+enpoHKyYP2UdQK69thw90XAOUCjvJBcgRSgfRPgWWt/W1dYzoGp3+nleAa8SJxF1d4FMA4Qmw==}
+    peerDependencies:
+      react: '>= 16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}

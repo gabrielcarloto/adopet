@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import classNames from 'classnames';
+import useOnclickOutside from 'react-cool-onclickoutside';
+
 interface IconProps {
   className?: string;
   'aria-label': string;
@@ -53,5 +57,58 @@ export function UserIcon(props: IconProps) {
         fill="#36D6AD"
       />
     </svg>
+  );
+}
+
+export function UnfoldIcon(props: IconProps) {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const ref = useOnclickOutside(() => setIsClicked(false));
+
+  return (
+    <div
+      className={`group ${props.className}`}
+      aria-label={props['aria-label']}
+      onClick={() => setIsClicked(!isClicked)}
+      ref={ref}
+    >
+      <svg
+        className={classNames('transform transition-transform ease-in-out', {
+          'group-hover:-translate-y-[2px] duration-200': !isClicked,
+          'translate-y-[10px] duration-300': isClicked,
+        })}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 18 11.2"
+      >
+        <g>
+          <g>
+            <polygon
+              points="2.2 11.2 0 9 9 0 18 9 15.8 11.2 9 4.4 2.2 11.2"
+              fill="#999999"
+            />
+          </g>
+        </g>
+      </svg>
+      <svg
+        className={classNames(
+          'rotate-180 mt-2 transform transition-transform ease-in-out',
+          {
+            'group-hover:translate-y-[2px] duration-200': !isClicked,
+            '-translate-y-[10px] rotate-180 duration-300': isClicked,
+          },
+        )}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 18 11.2"
+      >
+        <g>
+          <g>
+            <polygon
+              points="2.2 11.2 0 9 9 0 18 9 15.8 11.2 9 4.4 2.2 11.2"
+              fill="#999999"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import { Combobox } from '@headlessui/react';
 import classNames from 'classnames';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import { UnfoldIcon } from '../components/Icons';
 
 const GET_PETS_QUERY = gql`
   query Pets {
@@ -153,6 +154,12 @@ export default function Contact() {
               displayValue={(pet: SelectedPet) => pet.name}
               onChange={(e) => setPetNameQuery(e.target.value)}
             />
+            <Combobox.Button className="absolute right-4 top-12">
+              <UnfoldIcon
+                className="w-3"
+                aria-label="Expandir caixa de seleção"
+              />
+            </Combobox.Button>
             <Combobox.Options className="w-full py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white shadow-md">
               {filteredPets?.map((pet) => (
                 <Combobox.Option
