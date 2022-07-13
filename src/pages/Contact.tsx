@@ -160,7 +160,7 @@ export default function Contact() {
                 <Combobox.Button className="absolute right-4 top-12">
                   <UnfoldIcon
                     className="w-3"
-                    aria-label="Expandir caixa de seleção"
+                    aria-label="Expandir pets disponíveis"
                   />
                 </Combobox.Button>
                 <Transition
