@@ -150,7 +150,7 @@ export default function Contact() {
                     'h-12 w-full bg-white rounded-md shadow-sm placeholder:text-xs md:placeholder:text-sm',
                     'xl:placeholder:text-base placeholder:text-brand-gray-300 focus:ring-2',
                     'focus:ring-brand-primary ring-offset-2 outline-none disabled:text-brand-gray-500',
-                    'p-2 xl:p-3',
+                    'p-2 xl:p-3 ignore-onclick-outside',
                   )}
                   placeholder="Por qual animal você se interessou?"
                   value={petNameQuery}

@@ -63,7 +63,9 @@ export function UserIcon(props: IconProps) {
 export function UnfoldIcon(props: IconProps) {
   const [isClicked, setIsClicked] = useState(false);
 
-  const ref = useOnclickOutside(() => setIsClicked(false));
+  const ref = useOnclickOutside(() => setIsClicked(false), {
+    ignoreClass: 'ignore-onclick-outside',
+  });
 
   return (
     <div
