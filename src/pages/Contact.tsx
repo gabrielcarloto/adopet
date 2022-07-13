@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 import { Combobox, Transition } from '@headlessui/react';
@@ -60,6 +60,10 @@ export default function Contact() {
 
   const [petNameQuery, setPetNameQuery] = useState<string>('');
 
+  useEffect(() => {
+    if (petNameQuery.length > 1 && !getPets) setGetPets(true);
+  }, [petNameQuery]);
+
   const loadingView = (
     <div className="flex-auto grid place-items-center">Carregando...</div>
   );
@@ -92,10 +96,6 @@ export default function Contact() {
       if (!data) return;
       data.pets && setPets(data.pets);
     }, [data]);
-
-    if (!data) {
-      return loadingView;
-    }
   }
 
   const filteredPets =
@@ -138,7 +138,6 @@ export default function Contact() {
             className="flex flex-col gap-2 items-start relative"
             value={selectedPet}
             onChange={setSelectedPet}
-            disabled={!getPets}
           >
             {({ open }) => (
               <>
@@ -157,7 +156,10 @@ export default function Contact() {
                   displayValue={(pet: SelectedPet) => pet.name}
                   onChange={(e) => setPetNameQuery(e.target.value)}
                 />
-                <Combobox.Button className="absolute right-4 top-[45px] md:right-4 md:top-12">
+                <Combobox.Button
+                  className="absolute right-4 top-[45px] md:right-4 md:top-12"
+                  onClick={() => !getPets && setGetPets(true)}
+                >
                   <UnfoldIcon
                     className="w-3"
                     isOpen={open}
@@ -180,13 +182,14 @@ export default function Contact() {
                   >
                     {filteredPets?.map((pet, i) => (
                       <motion.li
+                        key={pet.id}
                         initial={{ opacity: 0, translateY: -50 }}
                         animate={{ opacity: 1, translateY: 0 }}
                         transition={{ delay: 0.03 * i }}
                       >
-                        <Combobox.Option as={Fragment} value={pet} key={pet.id}>
+                        <Combobox.Option as={Fragment} value={pet}>
                           {({ active, selected }) => (
-                            <li
+                            <div
                               className={classNames(
                                 'px-4 py-1 md:px-4 md:py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
                                 'transition-colors flex justify-between items-center',
@@ -202,7 +205,7 @@ export default function Contact() {
                               <span className="text-sm text-brand-gray-300 group-hover:text-zinc-900 transition-colors">
                                 {pet.location}
                               </span>
-                            </li>
+                            </div>
                           )}
                         </Combobox.Option>
                       </motion.li>
