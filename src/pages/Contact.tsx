@@ -157,9 +157,10 @@ export default function Contact() {
                   displayValue={(pet: SelectedPet) => pet.name}
                   onChange={(e) => setPetNameQuery(e.target.value)}
                 />
-                <Combobox.Button className="absolute right-4 top-12">
+                <Combobox.Button className="absolute right-4 top-[45px] md:right-4 md:top-12">
                   <UnfoldIcon
                     className="w-3"
+                    isOpen={open}
                     aria-label="Expandir pets disponíveis"
                   />
                 </Combobox.Button>

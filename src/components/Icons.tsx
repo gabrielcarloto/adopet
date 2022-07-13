@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import useOnclickOutside from 'react-cool-onclickoutside';
 
@@ -60,8 +60,16 @@ export function UserIcon(props: IconProps) {
   );
 }
 
-export function UnfoldIcon(props: IconProps) {
+interface UnfoldIconProps extends IconProps {
+  isOpen: boolean;
+}
+
+export function UnfoldIcon(props: UnfoldIconProps) {
   const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    if (props.isOpen) setIsClicked(true);
+  }, [props.isOpen]);
 
   const ref = useOnclickOutside(() => setIsClicked(false), {
     ignoreClass: 'ignore-onclick-outside',
