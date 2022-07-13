@@ -13,3 +13,11 @@
 .rotate-y-40 {
   transform: rotateY(40deg);
 }
+
+.rotate-x-0 {
+  transform: rotateX(0deg);
+}
+
+.rotate-x-40 {
+  transform: rotateX(40deg);
+}

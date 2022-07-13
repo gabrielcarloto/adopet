@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
-import { Combobox } from '@headlessui/react';
+import { Combobox, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { UnfoldIcon } from '../components/Icons';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const GET_PETS_QUERY = gql`
   query Pets {
@@ -139,44 +140,68 @@ export default function Contact() {
             onChange={setSelectedPet}
             disabled={!getPets}
           >
-            <Combobox.Label className="text-base md:text-lg xl:font-semibold text-brand-primary">
-              Nome do animal
-            </Combobox.Label>
-            <Combobox.Input
-              className={classNames(
-                'h-12 w-full bg-white rounded-md shadow-sm placeholder:text-xs md:placeholder:text-sm',
-                'xl:placeholder:text-base placeholder:text-brand-gray-300 focus:ring-2',
-                'focus:ring-brand-primary ring-offset-2 outline-none disabled:text-brand-gray-500',
-                'p-2 xl:p-3',
-              )}
-              placeholder="Por qual animal você se interessou?"
-              value={petNameQuery}
-              displayValue={(pet: SelectedPet) => pet.name}
-              onChange={(e) => setPetNameQuery(e.target.value)}
-            />
-            <Combobox.Button className="absolute right-4 top-12">
-              <UnfoldIcon
-                className="w-3"
-                aria-label="Expandir caixa de seleção"
-              />
-            </Combobox.Button>
-            <Combobox.Options className="w-full py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white shadow-md">
-              {filteredPets?.map((pet) => (
-                <Combobox.Option
+            {({ open }) => (
+              <>
+                <Combobox.Label className="text-base md:text-lg xl:font-semibold text-brand-primary">
+                  Nome do animal
+                </Combobox.Label>
+                <Combobox.Input
                   className={classNames(
-                    'px-4 py-1 md:px-4 md:py-2 text-base group text-brand-gray-500 hover:text-zinc-900 hover:bg-brand-gray-50 cursor-pointer',
-                    'transition-colors flex justify-between items-center',
+                    'h-12 w-full bg-white rounded-md shadow-sm placeholder:text-xs md:placeholder:text-sm',
+                    'xl:placeholder:text-base placeholder:text-brand-gray-300 focus:ring-2',
+                    'focus:ring-brand-primary ring-offset-2 outline-none disabled:text-brand-gray-500',
+                    'p-2 xl:p-3',
                   )}
-                  value={pet}
-                  key={pet.id}
+                  placeholder="Por qual animal você se interessou?"
+                  value={petNameQuery}
+                  displayValue={(pet: SelectedPet) => pet.name}
+                  onChange={(e) => setPetNameQuery(e.target.value)}
+                />
+                <Combobox.Button className="absolute right-4 top-12">
+                  <UnfoldIcon
+                    className="w-3"
+                    aria-label="Expandir caixa de seleção"
+                  />
+                </Combobox.Button>
+                <Transition
+                  show={open}
+                  className="w-full absolute z-10"
+                  enter="transition-all duration-300"
+                  enterFrom="opacity-0 rotate-x-40"
+                  enterTo="opacity-100 rotate-x-0"
+                  leave="transition-all duration-200"
+                  leaveFrom="opacity-100 rotate-x-0"
+                  leaveTo="opacity-0 rotate-x-40"
                 >
-                  <span>{pet.name}</span>
-                  <span className="text-sm text-brand-gray-300 group-hover:text-zinc-900 transition-colors">
-                    {pet.location}
-                  </span>
-                </Combobox.Option>
-              ))}
-            </Combobox.Options>
+                  <Combobox.Options
+                    static
+                    className="w-full py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white  shadow-md"
+                  >
+                    {filteredPets?.map((pet, i) => (
+                      <motion.div
+                        initial={{ opacity: 0, translateY: -50 }}
+                        animate={{ opacity: 1, translateY: 0 }}
+                        transition={{ delay: 0.03 * i }}
+                      >
+                        <Combobox.Option
+                          className={classNames(
+                            'px-4 py-1 md:px-4 md:py-2 text-base group text-brand-gray-500 hover:text-zinc-900 hover:bg-brand-gray-50 cursor-pointer',
+                            'transition-colors flex justify-between items-center',
+                          )}
+                          value={pet}
+                          key={pet.id}
+                        >
+                          <span>{pet.name}</span>
+                          <span className="text-sm text-brand-gray-300 group-hover:text-zinc-900 transition-colors">
+                            {pet.location}
+                          </span>
+                        </Combobox.Option>
+                      </motion.div>
+                    ))}
+                  </Combobox.Options>
+                </Transition>
+              </>
+            )}
           </Combobox>
           <Input
             as="textarea"
