@@ -85,7 +85,8 @@ export function UnfoldIcon(props: UnfoldIconProps) {
       <svg
         className={classNames('transform transition-transform ease-in-out', {
           'group-hover:-translate-y-[2px] duration-200': !isClicked,
-          'translate-y-[10px] duration-300': isClicked,
+          'translate-y-[10px] duration-300 group-hover:translate-y-4':
+            isClicked,
         })}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 18 11.2"
@@ -104,7 +105,8 @@ export function UnfoldIcon(props: UnfoldIconProps) {
           'rotate-180 mt-2 transform transition-transform ease-in-out',
           {
             'group-hover:translate-y-[2px] duration-200': !isClicked,
-            '-translate-y-[10px] rotate-180 duration-300': isClicked,
+            '-translate-y-[10px] rotate-180 duration-300 group-hover:-translate-y-4':
+              isClicked,
           },
         )}
         xmlns="http://www.w3.org/2000/svg"
