@@ -11,7 +11,7 @@ export default function Home() {
       </h1>
 
       <div className="grid gap-4 place-items-center max-w-[250px] md:max-w-[360px] xl:max-w-[488px]">
-        <h3 className="font-medium text-[26px] md:text-[28px]">Boas-vindas!</h3>
+        <h2 className="font-medium text-[26px] md:text-[28px]">Boas-vindas!</h2>
         <p className="text-base md:text-lg text-center leading-6 md:leading-[26px]">
           Que tal mudar sua vida adotando seu novo melhor amigo? Vem com a
           gente!
