@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
+import { MotionConfig } from 'framer-motion';
 import { BrowserRouter } from 'react-router-dom';
 import { client } from './lib/apollo';
 import Router from './Router';
@@ -9,7 +10,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <Router />
+        <MotionConfig reducedMotion="user">
+          <Router />
+        </MotionConfig>
       </BrowserRouter>
     </ApolloProvider>
   );
