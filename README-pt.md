@@ -13,8 +13,8 @@ Este projeto está sendo desenvolvido durante o _Challenge Front-end 4_ da *Alur
 - **Desafios**
   - [X] Primeira semana
     - [X] Construir as páginas do site seguindo a metodologia *mobile first*
-  - [ ] Segunda semana
-    - [ ] ...
+  - [X] Segunda semana
+    - [X] Ajustar as páginas para telas maiores
   - [ ] Terceira semana
     - [ ] ...
   - [ ] Quarta semana
@@ -32,16 +32,20 @@ Este projeto está sendo desenvolvido durante o _Challenge Front-end 4_ da *Alur
 
 - [ ] Criar uma página para visualizar todas as mensagens enviadas/recebidas
 - [ ] Tornar o site perfeitamente navegável pelo teclado
-- [ ] Usar GraphQL
+- [X] Usar GraphQL
 - [ ] Autenticação
-- [ ] Animações
+
+<details>
+  <summary>Animações</summary>
+
+  - [X] Input do nome dos pets na página de contato
+  - [ ] Cards dos pets
   - [ ] Ícones do header
     - [X] Popover nos links
     - [ ] Menu do ícone do usuário
   - [ ] Lottie
     - [X] Botão de visualização da senha em inputs
-    - [ ] Em breve...
-  - [ ] Cards dos pets
+</details>
 
 ## :file_folder: Como rodar o projeto localmente
 

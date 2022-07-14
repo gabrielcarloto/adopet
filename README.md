@@ -15,8 +15,8 @@ This project is being developed during the fourth *Alura's Front-end Challenge*.
 - **Challenges**
   - [X] First week
     - [X] Build the pages following the mobile first approach
-  - [ ] Second week
-    - [ ] ...
+  - [X] Second week
+    - [X] Adjust pages for larger screens
   - [ ] Third week
     - [ ] ...
   - [ ] Fourth week
@@ -34,16 +34,20 @@ This project is being developed during the fourth *Alura's Front-end Challenge*.
 
 - [ ] Create a page to view all sent/received messages
 - [ ] Make the site fully keyboard navigable
-- [ ] Use GraphQL
+- [X] Use GraphQL
 - [ ] Authentication
-- [ ] Animations
+
+<details>
+  <summary>Animations</summary>
+
+  - [ ] Pet cards
+  - [X] Pet name input in contact page
   - [ ] Header icons
     - [X] Links popover
     - [ ] User icon menu
   - [ ] Lottie
     - [X] Toggle password visualization button
-    - [ ] Coming soon...
-  - [ ] Pet cards
+</details>
 
 ## :running: How to run locally
 
