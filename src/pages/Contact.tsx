@@ -157,7 +157,7 @@ export default function Contact() {
                   onChange={(e) => setPetNameQuery(e.target.value)}
                 />
                 <Combobox.Button
-                  className="absolute right-4 top-[45px] md:right-4 md:top-12"
+                  className="w-10 h-12 grid place-content-center absolute right-0 top-8 md:top-9"
                   onClick={() => !getPets && setGetPets(true)}
                 >
                   <UnfoldIcon
@@ -178,7 +178,7 @@ export default function Contact() {
                 >
                   <Combobox.Options static as={Fragment}>
                     <motion.ul
-                      className="w-full h-auto py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white  shadow-md"
+                      className="w-full h-auto py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white shadow-md"
                       layout
                     >
                       {filteredPets && filteredPets.length >= 1 ? (
@@ -193,7 +193,7 @@ export default function Contact() {
                               {({ active, selected }) => (
                                 <div
                                   className={classNames(
-                                    'px-4 py-1 md:px-4 md:py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
+                                    'px-4 py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
                                     'transition-colors flex justify-between items-center',
                                     {
                                       'hover:text-zinc-900 text-brand-gray-500':
