@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <img
-        className="w-64 md:w-72"
+        className="w-64 md:w-72 aspect-[936/1229]"
         src={CatAndDog}
         alt="Gato e cachorro com corações acima deles"
       />
