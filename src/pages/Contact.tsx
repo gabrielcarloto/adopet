@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 import { Combobox, Transition } from '@headlessui/react';
@@ -176,46 +176,48 @@ export default function Contact() {
                   leaveFrom="opacity-100 rotate-x-0"
                   leaveTo="opacity-0 rotate-x-40"
                 >
-                  <Combobox.Options
-                    static
-                    className="w-full py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white  shadow-md"
-                  >
-                    {filteredPets && filteredPets.length >= 1 ? (
-                      filteredPets.map((pet, i) => (
-                        <motion.li
-                          key={pet.id}
-                          initial={{ opacity: 0, translateY: -50 }}
-                          animate={{ opacity: 1, translateY: 0 }}
-                          transition={{ delay: 0.03 * i }}
-                        >
-                          <Combobox.Option as={Fragment} value={pet}>
-                            {({ active, selected }) => (
-                              <div
-                                className={classNames(
-                                  'px-4 py-1 md:px-4 md:py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
-                                  'transition-colors flex justify-between items-center',
-                                  {
-                                    'hover:text-zinc-900 text-brand-gray-500':
-                                      !active && !selected,
-                                    'bg-brand-gray-50 text-zinc-900': active,
-                                    'text-brand-secondary': selected,
-                                  },
-                                )}
-                              >
-                                <span>{pet.name}</span>
-                                <span className="text-sm text-brand-gray-300 group-hover:text-zinc-900 transition-colors">
-                                  {pet.location}
-                                </span>
-                              </div>
-                            )}
-                          </Combobox.Option>
-                        </motion.li>
-                      ))
-                    ) : (
-                      <span className="px-4 py-1 md:px-4 md:py-2 text-base text-brand-gray-500">
-                        Não encontramos nenhum pet com esse nome
-                      </span>
-                    )}
+                  <Combobox.Options static as={Fragment}>
+                    <motion.ul
+                      className="w-full h-auto py-1 md:py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white  shadow-md"
+                      layout
+                    >
+                      {filteredPets && filteredPets.length >= 1 ? (
+                        filteredPets.map((pet, i) => (
+                          <motion.li
+                            key={pet.id}
+                            initial={{ opacity: 0, translateY: -50 }}
+                            animate={{ opacity: 1, translateY: 0 }}
+                            transition={{ delay: 0.03 * i }}
+                          >
+                            <Combobox.Option as={Fragment} value={pet}>
+                              {({ active, selected }) => (
+                                <div
+                                  className={classNames(
+                                    'px-4 py-1 md:px-4 md:py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
+                                    'transition-colors flex justify-between items-center',
+                                    {
+                                      'hover:text-zinc-900 text-brand-gray-500':
+                                        !active && !selected,
+                                      'bg-brand-gray-50 text-zinc-900': active,
+                                      'text-brand-secondary': selected,
+                                    },
+                                  )}
+                                >
+                                  <span>{pet.name}</span>
+                                  <span className="text-sm text-brand-gray-300 group-hover:text-zinc-900 transition-colors">
+                                    {pet.location}
+                                  </span>
+                                </div>
+                              )}
+                            </Combobox.Option>
+                          </motion.li>
+                        ))
+                      ) : (
+                        <span className="px-4 py-1 md:px-4 md:py-2 text-base text-brand-gray-500">
+                          Não encontramos nenhum pet com esse nome
+                        </span>
+                      )}
+                    </motion.ul>
                   </Combobox.Options>
                 </Transition>
               </>
