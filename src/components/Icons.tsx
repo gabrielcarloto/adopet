@@ -78,7 +78,6 @@ export function UnfoldIcon(props: UnfoldIconProps) {
   return (
     <div
       className={`group ${props.className}`}
-      aria-label={props['aria-label']}
       onClick={() => setIsClicked(!isClicked)}
       ref={ref}
     >
@@ -88,6 +87,7 @@ export function UnfoldIcon(props: UnfoldIconProps) {
           'translate-y-[10px] duration-300 group-hover:translate-y-4':
             isClicked,
         })}
+        aria-label={props['aria-label']}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 18 11.2"
       >

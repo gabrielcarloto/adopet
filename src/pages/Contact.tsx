@@ -183,14 +183,14 @@ export default function Contact() {
                     >
                       {filteredPets && filteredPets.length >= 1 ? (
                         filteredPets.map((pet, i) => (
-                          <motion.li
-                            key={pet.id}
-                            initial={{ opacity: 0, translateY: -50 }}
-                            animate={{ opacity: 1, translateY: 0 }}
-                            transition={{ delay: 0.03 * i }}
-                          >
-                            <Combobox.Option as={Fragment} value={pet}>
-                              {({ active, selected }) => (
+                          <Combobox.Option as={Fragment} value={pet}>
+                            {({ active, selected }) => (
+                              <motion.li
+                                key={pet.id}
+                                initial={{ opacity: 0, translateY: -50 }}
+                                animate={{ opacity: 1, translateY: 0 }}
+                                transition={{ delay: 0.03 * i }}
+                              >
                                 <div
                                   className={classNames(
                                     'px-4 py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
@@ -208,9 +208,9 @@ export default function Contact() {
                                     {pet.location}
                                   </span>
                                 </div>
-                              )}
-                            </Combobox.Option>
-                          </motion.li>
+                              </motion.li>
+                            )}
+                          </Combobox.Option>
                         ))
                       ) : (
                         <span className="px-4 py-1 md:px-4 md:py-2 text-base text-brand-gray-500">
