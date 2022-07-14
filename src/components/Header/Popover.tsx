@@ -43,8 +43,7 @@ export default function Popover({ label, to, children }: PopoverProps) {
       onBlur={() => setIsPanelOpen(false)}
     >
       <HeadlessUIPopover.Button
-        as="div"
-        onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
+        onKeyDown={(e: KeyboardEvent<HTMLButtonElement>) => {
           /**
            * for some reason, depending on where the Link component is,
            * it either stops working when clicked or when pressing enter,
@@ -52,8 +51,9 @@ export default function Popover({ label, to, children }: PopoverProps) {
            */
           if (e.key === 'Enter') navigate(to);
         }}
+        onClick={() => navigate(to)}
       >
-        <Link to={to}>{children}</Link>
+        {children}
       </HeadlessUIPopover.Button>
 
       <Transition
