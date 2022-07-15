@@ -177,9 +177,16 @@ export default function Contact() {
                   leaveTo="opacity-0 rotate-x-40"
                 >
                   <Combobox.Options static as={Fragment}>
-                    <motion.ul
-                      className="w-full h-auto py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white shadow-md"
-                      layout
+                    <ul
+                      className={classNames(
+                        'w-full py-2 rounded-md absolute top-[88px] md:top-24 z-10 bg-white shadow-md transition-[height]',
+                      )}
+                      style={{
+                        height:
+                          filteredPets && filteredPets.length > 0
+                            ? 40 * filteredPets.length + 16
+                            : 40,
+                      }}
                     >
                       {filteredPets && filteredPets.length >= 1 ? (
                         filteredPets.map((pet, i) => (
@@ -217,7 +224,7 @@ export default function Contact() {
                           Não encontramos nenhum pet com esse nome
                         </span>
                       )}
-                    </motion.ul>
+                    </ul>
                   </Combobox.Options>
                 </Transition>
               </>
