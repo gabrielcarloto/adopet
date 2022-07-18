@@ -1,12 +1,13 @@
 import Button from '../components/Button';
 import { UserIcon } from '../components/Icons';
 import Input from '../components/Input';
+import Main from '../components/Main';
 
 export default function Contact() {
   const userHasPhoto = true;
 
   return (
-    <main className="flex-auto m-header mb-4 md:mb-[91px] xl:mb-8 px-6 md:px-[122px] xl:px-[444px] flex flex-col items-center">
+    <Main className="mb-4 md:mb-[91px] xl:mb-8 px-6 md:px-[122px] xl:px-[444px] items-center">
       <h1 className="md:text-lg text-brand-primary text-center max-w-[226px] md:max-w-full xl:max-w-[90%]">
         Esse é o perfil que aparece para responsáveis ou ONGs que recebem sua
         mensagem.
@@ -73,6 +74,6 @@ export default function Contact() {
         </div>
         <Button size="md" text="Salvar" />
       </form>
-    </main>
+    </Main>
   );
 }

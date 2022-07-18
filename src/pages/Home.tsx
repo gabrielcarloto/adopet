@@ -2,10 +2,11 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 
 import CatAndDog from '../assets/cat-and-dog.png';
+import Main from '../components/Main';
 
 export default function Home() {
   return (
-    <main className="w-full m-header flex flex-col flex-auto items-center gap-6 md:gap-10 2xl:gap-0 justify-between text-white">
+    <Main className="w-full items-center gap-6 md:gap-10 2xl:gap-0 justify-between text-white">
       <h1>
         <Logo variant="cream" />
       </h1>
@@ -28,6 +29,6 @@ export default function Home() {
         src={CatAndDog}
         alt="Gato e cachorro com corações acima deles"
       />
-    </main>
+    </Main>
   );
 }

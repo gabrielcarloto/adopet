@@ -1,10 +1,11 @@
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Logo from '../components/Logo';
+import Main from '../components/Main';
 
 export default function Signin() {
   return (
-    <main className="flex-auto m-header flex flex-col gap-12 md:gap-10 xl:gap-20 items-center">
+    <Main className="gap-12 md:gap-10 xl:gap-20 items-center">
       <h1>
         <Logo variant="blue" />
       </h1>
@@ -23,6 +24,6 @@ export default function Signin() {
         </div>
         <Button text="Entrar" size="md" />
       </form>
-    </main>
+    </Main>
   );
 }

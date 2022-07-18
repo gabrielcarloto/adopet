@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import classNames from 'classnames';
+import Main from '../components/Main';
 import Pet from '../components/Pet';
 
 const GET_PETS_QUERY = gql`
@@ -38,7 +39,7 @@ export default function Pets() {
   const { data } = useQuery<GetPetsQueryResponse>(GET_PETS_QUERY);
 
   return (
-    <main className="flex-auto flex flex-col m-header md:pb-8 xl:pb-[60px] container">
+    <Main className="md:pb-8 xl:pb-[60px] container">
       <h1 className="mx-auto mb-8 xl:mb-10 max-w-[226px] md:max-w-[373px] xl:max-w-full text-brand-primary text-center md:text-lg">
         Olá! Veja os amigos disponíveis para adoção!
       </h1>
@@ -64,6 +65,6 @@ export default function Pets() {
               />
             ))}
       </section>
-    </main>
+    </Main>
   );
 }

@@ -1,10 +1,11 @@
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Logo from '../components/Logo';
+import Main from '../components/Main';
 
 export default function Signup() {
   return (
-    <main className="flex-auto m-header mb-[105px] md:mb-[185px] xl:mb-[150px] flex flex-col gap-6 md:gap-10 xl:gap-12 items-center">
+    <Main className="mb-[105px] md:mb-[185px] xl:mb-[150px] gap-6 md:gap-10 xl:gap-12 items-center">
       <h1>
         <Logo variant="blue" />
       </h1>
@@ -44,6 +45,6 @@ export default function Signup() {
 
         <Button text="Cadastrar" size="md" />
       </form>
-    </main>
+    </Main>
   );
 }
