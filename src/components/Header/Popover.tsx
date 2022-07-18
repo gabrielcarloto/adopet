@@ -1,60 +1,41 @@
-import { Popover as HeadlessUIPopover, Transition } from '@headlessui/react';
-import { ReactNode, SyntheticEvent, useEffect, useState } from 'react';
+import { Transition } from '@headlessui/react';
+import { ReactNode, useEffect, useId, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
-interface KeyboardEvent<T = Element> extends SyntheticEvent<T> {
-  altKey: boolean;
-  /** @deprecated */
-  charCode: number;
-  ctrlKey: boolean;
-  getModifierState(key: string): boolean;
-  key: string;
-  /** @deprecated */
-  keyCode: number;
-  locale: string;
-  location: number;
-  metaKey: boolean;
-  repeat: boolean;
-  shiftKey: boolean;
-  /** @deprecated */
-  which: number;
-}
 
 interface PopoverProps {
   label: string;
   to: string;
   children: ReactNode;
+  skip?: boolean;
 }
 
-export default function Popover({ label, to, children }: PopoverProps) {
+export default function Popover({ label, to, skip, children }: PopoverProps) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const panelId = useId();
+
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isSkipButtonVisible, setIsSkipButtonVisible] = useState(false);
 
   useEffect(() => setIsPanelOpen(false), [location]);
 
   return (
-    <HeadlessUIPopover
+    <div
       className="relative"
       onMouseEnter={() => setIsPanelOpen(true)}
       onMouseLeave={() => setIsPanelOpen(false)}
-      onFocus={() => setIsPanelOpen(true)}
+      onFocus={() => {
+        setIsPanelOpen(true);
+        skip && setIsSkipButtonVisible(true);
+      }}
       onBlur={() => setIsPanelOpen(false)}
+      aria-expanded={skip ? isPanelOpen : false}
+      aria-controls={`popover-panel-${panelId}`}
     >
-      <HeadlessUIPopover.Button
-        onKeyDown={(e: KeyboardEvent<HTMLButtonElement>) => {
-          /**
-           * for some reason, depending on where the Link component is,
-           * it either stops working when clicked or when pressing enter,
-           * so I did this workaround
-           */
-          if (e.key === 'Enter') navigate(to);
-        }}
-        onClick={() => navigate(to)}
-      >
+      <Link onKeyDown={(e) => e.key === ' ' && navigate(to)} to={to}>
         {children}
-      </HeadlessUIPopover.Button>
+      </Link>
 
       <Transition
         show={isPanelOpen}
@@ -65,13 +46,21 @@ export default function Popover({ label, to, children }: PopoverProps) {
         leaveFrom="opacity-100 absolute top-0 rotate-y-0"
         leaveTo="opacity-0 absolute top-0 rotate-y-40"
       >
-        <HeadlessUIPopover.Panel
+        <div
+          id={`popover-panel-${panelId}`}
           className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
-          static
         >
-          <Link to={to}>{label}</Link>
-        </HeadlessUIPopover.Panel>
+          <Link aria-hidden tabIndex={99999} to={to}>
+            {label}
+          </Link>
+          {isSkipButtonVisible && (
+            <>
+              <hr />
+              <a href="#main-content">Ir para o conteúdo principal</a>
+            </>
+          )}
+        </div>
       </Transition>
-    </HeadlessUIPopover>
+    </div>
   );
 }
