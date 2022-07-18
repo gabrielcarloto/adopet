@@ -5,7 +5,7 @@ import Main from '../components/Main';
 
 export default function Signin() {
   return (
-    <Main className="gap-12 md:gap-10 xl:gap-20 items-center">
+    <Main className="mb-40 gap-12 md:gap-10 xl:gap-20 items-center">
       <h1>
         <Logo variant="blue" />
       </h1>
