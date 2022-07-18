@@ -27,7 +27,7 @@ export default function Contact() {
           >
             {userHasPhoto ? (
               <img
-                className="rounded-full w-20 md:w-32 xl:w-40"
+                className="rounded-full w-20 md:w-32 xl:w-40 aspect-square"
                 src="https://github.com/gabrielcarloto.png"
                 alt="Foto de perfil"
               />
