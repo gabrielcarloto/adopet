@@ -1,17 +1,39 @@
+import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 
-interface ButtonProps {
+interface ButtonRequiredProps {
   size: 'md' | 'lg';
   text: string;
-  as?: 'button' | 'a';
+}
+
+interface ButtonOptionalProps {
+  as?: 'a';
   href?: string;
 }
+
+type ButtonProps = ButtonRequiredProps & ButtonOptionalProps;
 
 export default function Button({
   size,
   text,
-  as = 'button',
+  ...props
+}: ButtonRequiredProps & ButtonHTMLAttributes<HTMLButtonElement>): JSX.Element;
+export default function Button({
+  size,
+  text,
+  as,
   href,
+  ...props
+}: ButtonRequiredProps & {
+  as?: 'a';
+  href: string;
+} & AnchorHTMLAttributes<HTMLAnchorElement>): JSX.Element;
+export default function Button({
+  size,
+  text,
+  as,
+  href,
+  ...props
 }: ButtonProps) {
   const width =
     size === 'md'
@@ -22,11 +44,15 @@ export default function Button({
 
   if (as === 'a') {
     return (
-      <Link className={classes} to={href!}>
+      <Link {...props} className={classes} to={href!}>
         {text}
       </Link>
     );
-  } else {
-    return <button className={classes}>{text}</button>;
   }
+
+  return (
+    <button {...props} className={classes}>
+      {text}
+    </button>
+  );
 }
