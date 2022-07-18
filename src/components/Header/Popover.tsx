@@ -48,7 +48,7 @@ export default function Popover({ label, to, skip, children }: PopoverProps) {
       >
         <div
           id={`popover-panel-${panelId}`}
-          className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded"
+          className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded flex flex-col gap-1"
         >
           <Link aria-hidden tabIndex={99999} to={to}>
             {label}
