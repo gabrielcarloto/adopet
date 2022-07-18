@@ -3,6 +3,15 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-150%)' },
+          '100%': { transform: 'translateX(120%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 3s ease-in-out infinite',
+      },
       boxShadow: {
         sm: '0px 2px 2px rgba(0, 0, 0, 0.15);',
       },
@@ -26,6 +35,8 @@ module.exports = {
         'shape-2': 'url(/src/assets/shape-2.svg)',
         'shape-3': 'url(/src/assets/shape-3.svg)',
         paws: 'url(/src/assets/paws.svg)',
+        skeleton:
+          'linear-gradient(to right, rgba(188, 188, 188, 0) 0, rgba(188, 188, 188, 0.2) 40%, rgba(188, 188, 188, 0.3) 60%, rgba(188, 188, 188, 0))',
       },
       fontFamily: {
         sans: 'Poppins, sans-serif',
