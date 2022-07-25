@@ -17,10 +17,8 @@ This project is being developed during the fourth *Alura's Front-end Challenge*.
     - [X] Build the pages following the mobile first approach
   - [X] Second week
     - [X] Adjust pages for larger screens
-  - [ ] Third week
-    - [ ] ...
-  - [ ] Fourth week
-    - [ ] ...
+  - [ ] Third and fourth weeks
+    - [ ] Add dynamic pages and authentication
 
 ### :computer: Technologies
 
@@ -29,6 +27,8 @@ This project is being developed during the fourth *Alura's Front-end Challenge*.
 - [React](https://reactjs.org/)
 - [Tailwindcss](https://tailwindcss.com/)
 - [Headless UI](https://headlessui.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lottie](https://airbnb.io/lottie/)
 
 ### :dart: My goals
 

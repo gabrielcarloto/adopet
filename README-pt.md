@@ -15,10 +15,8 @@ Este projeto está sendo desenvolvido durante o _Challenge Front-end 4_ da *Alur
     - [X] Construir as páginas do site seguindo a metodologia *mobile first*
   - [X] Segunda semana
     - [X] Ajustar as páginas para telas maiores
-  - [ ] Terceira semana
-    - [ ] ...
-  - [ ] Quarta semana
-    - [ ] ...
+  - [ ] Terceira e quarta semanas
+    - [ ] Adicionar páginas dinâmicas e autenticação
 
 ### :computer: Tecnologias
 
@@ -27,6 +25,8 @@ Este projeto está sendo desenvolvido durante o _Challenge Front-end 4_ da *Alur
 - [React](https://pt-br.reactjs.org/)
 - [Tailwindcss](https://tailwindcss.com/)
 - [Headless UI](https://headlessui.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lottie](https://airbnb.io/lottie/)
 
 ### :dart: Meus objetivos
 
