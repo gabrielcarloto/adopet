@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { RequireAuth } from './components/contexts/auth';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Shapes from './components/Shapes';
@@ -19,9 +20,30 @@ export default function Router() {
           <Route path="/cadastro" element={<Signup />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/pets" element={<Pets />} />
-          <Route path="/contato" element={<Contact />} />
-          <Route path="/contato/:id" element={<Contact />} />
-          <Route path="/perfil" element={<Profile />} />
+          <Route
+            path="/contato"
+            element={
+              <RequireAuth>
+                <Contact />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/contato/:id"
+            element={
+              <RequireAuth>
+                <Contact />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/perfil"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
         </Routes>
         <Footer />
       </div>

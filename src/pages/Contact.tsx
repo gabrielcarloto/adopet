@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import { UnfoldIcon } from '../components/Icons';
 import { motion } from 'framer-motion';
+import { useAuth } from '../components/contexts/auth';
 
 const GET_PETS_QUERY = gql`
   query Pets {
@@ -48,6 +49,7 @@ interface SelectedPet {
 }
 
 export default function Contact() {
+  const { user } = useAuth();
   const [searchParams, _setSearchParams] = useSearchParams();
   const id = searchParams.get('id');
 
@@ -121,17 +123,8 @@ export default function Contact() {
             labelPosition="start"
             labelColor="brand-primary"
             placeholder="Insira seu nome completo"
-            required
-          />
-          <Input
-            type="tel"
-            label="Telefone"
-            height="lg"
-            backgroundColor="white"
-            labelPosition="start"
-            labelColor="brand-primary"
-            placeholder="Insira seu telefone e/ou whatsapp"
-            required
+            value={user.name}
+            disabled
           />
           <Combobox
             as="div"

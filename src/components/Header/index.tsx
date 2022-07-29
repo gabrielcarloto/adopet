@@ -1,20 +1,29 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu } from '@headlessui/react';
-import Popover from './Popover';
-
+import { gql, useMutation } from '@apollo/client';
 import { HomeIcon, MailIcon, UserIcon } from '../Icons';
+import { useAuth } from '../contexts/auth';
+import Popover from './Popover';
+import Button from '../Button';
 import Logo from '../Logo';
 
+const LOGOUT_MUTATION = gql`
+  mutation Logout($username: String) {
+    logout(username: $username)
+  }
+`;
+
 export default function Header() {
-  const location = useLocation();
+  const { user, signed, signOut } = useAuth();
+  const navigate = useNavigate();
 
-  const isLoggedIn = true;
-  const routesUserShouldNotAppear =
-    location.pathname === '/' ||
-    location.pathname === '/cadastro' ||
-    location.pathname === '/login';
-
-  const shouldUserBeVisible = isLoggedIn && !routesUserShouldNotAppear;
+  const [logout, { error }] = useMutation(LOGOUT_MUTATION, {
+    onCompleted: () => {
+      if (error) return;
+      navigate('/');
+      signOut();
+    },
+  });
 
   return (
     <header className="w-screen max-w-full h-10 mt-12 md:mt-16 md:pl-12 xl:pl-40 flex flex-initial items-center text-white">
@@ -31,22 +40,43 @@ export default function Header() {
           <MailIcon className="h-[23px]" aria-label="Mensagens" />
         </Popover>
       </div>
-      {shouldUserBeVisible && (
+      {signed && (
         <Menu>
           <div className="relative flex-1 mr-10 xl:mr-44 grid place-items-end">
             <Menu.Button>
-              <UserIcon className="w-10" aria-label="Usuário" />
+              {user.picture ? (
+                <img
+                  className="rounded-full w-10 aspect-square"
+                  src={user.picture as string}
+                  alt="Foto de perfil"
+                />
+              ) : (
+                <UserIcon className="w-10" aria-label="Ícone do usuário" />
+              )}
             </Menu.Button>
-            <Menu.Items className="absolute top-11 w-max rounded shadow-lg bg-white text-brand-primary text-sm flex flex-col items-center">
+            <Menu.Items className="absolute top-11 w-max rounded shadow-lg bg-white text-brand-gray-500 text-base flex flex-col items-center gap-1 p-2">
               <Menu.Item>
-                <Link to="/perfil" className="p-1">
+                <Link
+                  to="/perfil"
+                  className="w-full h-7 hover:text-brand-primary transition-colors grid place-items-center"
+                >
                   Perfil
                 </Link>
               </Menu.Item>
-              {/* <hr className="w-full border-brand-primary" />
-            <Link to="#" className="p-1">
-              Outro link
-            </Link> */}
+              {/* <hr className="w-full border-brand-gray-500 opacity-50" /> */}
+              <Menu.Item>
+                <Button
+                  onClick={() =>
+                    logout({
+                      variables: {
+                        username: user.username,
+                      },
+                    })
+                  }
+                  size="sm"
+                  text="Sair"
+                />
+              </Menu.Item>
             </Menu.Items>
           </div>
         </Menu>

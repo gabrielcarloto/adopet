@@ -1,10 +1,17 @@
+import { useAuth } from '../components/contexts/auth';
 import Button from '../components/Button';
 import { UserIcon } from '../components/Icons';
 import Input from '../components/Input';
 import Main from '../components/Main';
+import { useForm } from 'react-hook-form';
 
 export default function Contact() {
-  const userHasPhoto = true;
+  const { user } = useAuth();
+
+  const {
+    register,
+    // formState: { errors },
+  } = useForm();
 
   return (
     <Main className="mb-4 md:mb-[91px] xl:mb-8 px-6 md:px-[122px] xl:px-[444px] items-center">
@@ -24,11 +31,12 @@ export default function Contact() {
             label="Foto"
             labelPosition="start"
             labelColor="brand-primary"
+            {...register('picture')}
           >
-            {userHasPhoto ? (
+            {user.picture ? (
               <img
                 className="rounded-full w-20 md:w-32 xl:w-40 aspect-square"
-                src="https://github.com/gabrielcarloto.png"
+                src={user.picture as string}
                 alt="Foto de perfil"
               />
             ) : (
@@ -44,24 +52,8 @@ export default function Contact() {
             backgroundColor="white"
             labelPosition="start"
             labelColor="brand-primary"
-            placeholder="Insira seu nome completo"
-          />
-          <Input
-            type="tel"
-            label="Telefone"
-            height="lg"
-            backgroundColor="white"
-            labelPosition="start"
-            labelColor="brand-primary"
-            placeholder="Insira seu telefone e/ou whatsapp"
-          />
-          <Input
-            label="Cidade"
-            height="lg"
-            backgroundColor="white"
-            labelPosition="start"
-            labelColor="brand-primary"
-            placeholder="Insira a cidade onde mora"
+            placeholder={user.name}
+            {...register('name')}
           />
           <Input
             as="textarea"
@@ -70,6 +62,7 @@ export default function Contact() {
             labelPosition="start"
             labelColor="brand-primary"
             placeholder="Escreva um pouco sobre você"
+            {...register('about')}
           />
         </div>
         <Button size="md" text="Salvar" />

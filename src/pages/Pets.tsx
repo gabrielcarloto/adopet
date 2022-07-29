@@ -1,5 +1,5 @@
-import { gql, useQuery } from '@apollo/client';
 import classNames from 'classnames';
+import { gql, useQuery } from '@apollo/client';
 import Main from '../components/Main';
 import Pet from '../components/Pet';
 
@@ -8,11 +8,11 @@ const GET_PETS_QUERY = gql`
     pets {
       id
       name
-      description
+      age
+      size
+      behaviour
       location
-      image {
-        url
-      }
+      image
     }
   }
 `;
@@ -22,15 +22,11 @@ interface GetPetsQueryResponse {
     pet: {
       id: string;
       name: string;
-      description: {
-        age: string;
-        size: string;
-        behaviour: string;
-      };
+      age: string;
+      size: string;
+      behaviour: string;
       location: string;
-      image: {
-        url: string;
-      };
+      image: string;
     },
   ];
 }
@@ -46,18 +42,19 @@ export default function Pets() {
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {data
-          ? data.pets.map((pet) => (
+          ? data.pets.map(({ age, size, behaviour, ...pet }) => (
               <Pet
                 key={pet.id}
                 id={pet.id}
                 name={pet.name}
-                image={pet.image.url}
-                description={pet.description}
+                image={pet.image}
+                description={{ age, size, behaviour }}
                 location={pet.location}
               />
             ))
-          : Array.from(Array(9)).map(() => (
+          : Array.from(Array(9)).map((_, i) => (
               <div
+                key={i}
                 className={classNames(
                   'w-full h-[196px] inline-block relative overflow-hidden bg-brand-gray-50 after:h-full after:w-5/6 after:absolute after:top-0',
                   'after:left-10 after:bg-skeleton after:animate-shimmer',
