@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu } from '@headlessui/react';
 import { gql, useMutation } from '@apollo/client';
 import { HomeIcon, MailIcon, UserIcon } from '../Icons';
-import { useAuth } from '../contexts/auth';
+import { useAuth } from '../../contexts/auth';
 import Popover from './Popover';
 import Button from '../Button';
 import Logo from '../Logo';

@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import { UnfoldIcon } from '../components/Icons';
 import { motion } from 'framer-motion';
-import { useAuth } from '../components/contexts/auth';
+import { useAuth } from '../contexts/auth';
 
 const GET_PETS_QUERY = gql`
   query Pets {

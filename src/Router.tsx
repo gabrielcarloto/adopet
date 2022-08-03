@@ -1,14 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import { RequireAuth } from './components/contexts/auth';
+import { RequireAuth } from './contexts/auth';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Shapes from './components/Shapes';
-import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Pets from './pages/Pets';
-import Profile from './pages/Profile';
-import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import Signin from './pages/Signin';
+import Contact from './pages/Contact';
+import Profile from './pages/Profile';
+import Messages from './pages/Messages';
 
 export default function Router() {
   return (

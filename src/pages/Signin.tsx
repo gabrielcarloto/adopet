@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { gql, useMutation } from '@apollo/client';
-import { useAuth, User } from '../components/contexts/auth';
+import { useAuth, User } from '../contexts/auth';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Logo from '../components/Logo';

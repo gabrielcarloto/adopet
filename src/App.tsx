@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { MotionConfig } from 'framer-motion';
 import { BrowserRouter } from 'react-router-dom';
-import AuthProvider from './components/contexts/auth';
+import AuthProvider from './contexts/auth';
 import { client } from './lib/apollo';
 import Router from './Router';
 
