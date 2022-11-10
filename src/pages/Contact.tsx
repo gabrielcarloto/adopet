@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { Combobox, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import Button from '../components/Button';
@@ -51,52 +51,52 @@ export default function Contact() {
   const [searchParams, _setSearchParams] = useSearchParams();
   const id = searchParams.get('id');
 
-  const [getPets, setGetPets] = useState(!id);
+  // const [getPets, setGetPets] = useState(!id);
   const [pets, setPets] = useState<GetPetsQueryResponse['pets'] | undefined>();
-  const [selectedPet, setSelectedPet] = useState<SelectedPet>({
-    id: '',
-    name: '',
+  const [selectedPet, setSelectedPet] = useState<SelectedPet>(
+    {} as SelectedPet,
+  );
+
+  const [
+    loadPetById,
+    { called: calledPetById, loading: loadingPetById, data: petByIdData },
+  ] = useLazyQuery<GetPetByIDQueryResponse>(GET_PET_BY_ID_QUERY, {
+    variables: {
+      id,
+    },
   });
 
-  const [petNameQuery, setPetNameQuery] = useState<string>('');
+  const [
+    loadPets,
+    { called: calledPets, loading: loadingPets, data: petsData },
+  ] = useLazyQuery<GetPetsQueryResponse>(GET_PETS_QUERY);
 
-  useEffect(() => {
-    if (petNameQuery.length > 1 && !getPets) setGetPets(true);
-  }, [petNameQuery]);
+  const [petNameQuery, setPetNameQuery] = useState<string>('');
 
   const loadingView = (
     <div className="flex-auto grid place-items-center">Carregando...</div>
   );
 
-  if (id && !getPets) {
-    const { data } = useQuery<GetPetByIDQueryResponse>(GET_PET_BY_ID_QUERY, {
-      variables: {
-        id,
-      },
-    });
-
-    useEffect(() => {
-      if (!data) return;
-
-      if (!data.pet) {
-        setGetPets(true);
-        return;
-      }
-
-      setSelectedPet({ id, name: data.pet.name });
-    }, [data]);
-
-    if (!data) {
-      return loadingView;
+  useEffect(() => {
+    if (id) {
+      loadPetById();
+      if (loadingPetById || !petByIdData || selectedPet.name) return;
+      setSelectedPet({ id, name: petByIdData.pet.name });
+    } else {
+      loadPets();
+      if (loadingPets || !petsData) return;
+      setPets(petsData.pets);
     }
-  } else {
-    const { data } = useQuery<GetPetsQueryResponse>(GET_PETS_QUERY);
+  }, [id, petByIdData, petsData]);
 
-    useEffect(() => {
-      if (!data) return;
-      data.pets && setPets(data.pets);
-    }, [data]);
-  }
+  useEffect(() => {
+    if (petNameQuery.length > 1 && !calledPets) loadPets();
+    if (loadingPets || !petsData) return;
+    setPets(petsData.pets);
+  }, [petNameQuery, petsData]);
+
+  if ((calledPetById && !petByIdData) || (!id && calledPets && !petsData))
+    return loadingView;
 
   const filteredPets =
     petNameQuery === ''
@@ -158,7 +158,7 @@ export default function Contact() {
                 />
                 <Combobox.Button
                   className="w-10 h-12 grid place-content-center absolute right-0 top-8 md:top-9"
-                  onClick={() => !getPets && setGetPets(true)}
+                  // onClick={() => loadPets()}
                 >
                   <UnfoldIcon
                     className="w-3"
@@ -190,10 +190,13 @@ export default function Contact() {
                     >
                       {filteredPets && filteredPets.length >= 1 ? (
                         filteredPets.map((pet, i) => (
-                          <Combobox.Option as={Fragment} value={pet}>
+                          <Combobox.Option
+                            key={pet.id}
+                            as={Fragment}
+                            value={pet}
+                          >
                             {({ active, selected }) => (
                               <motion.li
-                                key={pet.id}
                                 initial={{ opacity: 0, translateY: -50 }}
                                 animate={{ opacity: 1, translateY: 0 }}
                                 transition={{ delay: 0.03 * i }}
