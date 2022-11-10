@@ -16,7 +16,7 @@ export default function SkipToContent({
     <a
       href={skipTo}
       className={classNames(
-        'bg-white absolute top-0 left-0 w-screen h-14 grid place-items-center text-lg font-bold underline text-zinc-900',
+        'bg-brand-secondary absolute top-0 left-0 w-screen h-14 grid place-items-center text-lg font-bold underline text-[#1a0f74]',
         {
           '-translate-y-14': !show,
         },
