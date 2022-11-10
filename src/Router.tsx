@@ -9,7 +9,6 @@ import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import Contact from './pages/Contact';
 import Profile from './pages/Profile';
-import Messages from './pages/Messages';
 
 export default function Router() {
   return (
