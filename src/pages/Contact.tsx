@@ -95,7 +95,7 @@ export default function Contact() {
     setPets(petsData.pets);
   }, [petNameQuery, petsData]);
 
-  if ((calledPetById && !petByIdData) || (!id && calledPets && !petsData))
+  if ((calledPetById && !petByIdData) || (!id && calledPets && loadingPets))
     return loadingView;
 
   const filteredPets =
