@@ -4,6 +4,7 @@ import Popover from './Popover';
 
 import { HomeIcon, MailIcon, UserIcon } from '../Icons';
 import Logo from '../Logo';
+import SkipToContent from '../SkipToContent';
 
 export default function Header() {
   const location = useLocation();
@@ -18,9 +19,11 @@ export default function Header() {
 
   return (
     <header className="w-screen max-w-full h-10 mt-12 md:mt-16 md:pl-12 xl:pl-40 flex flex-initial items-center text-white">
-      <Popover skip label="Voltar à página inicial" to="/">
+      <Popover label="Voltar à página inicial" to="/">
         <Logo variant="cream" className="hidden md:block w-32" />
       </Popover>
+
+      <SkipToContent skipTo="#main-content">Pular navegação</SkipToContent>
 
       <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
         <Popover label="Ver pets disponíveis para adoção" to="/pets">

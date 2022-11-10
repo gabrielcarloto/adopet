@@ -6,17 +6,15 @@ interface PopoverProps {
   label: string;
   to: string;
   children: ReactNode;
-  skip?: boolean;
 }
 
-export default function Popover({ label, to, skip, children }: PopoverProps) {
+export default function Popover({ label, to, children }: PopoverProps) {
   const location = useLocation();
   const navigate = useNavigate();
 
   const panelId = useId();
 
   const [isPanelOpen, setIsPanelOpen] = useState(false);
-  const [isSkipButtonVisible, setIsSkipButtonVisible] = useState(false);
 
   useEffect(() => setIsPanelOpen(false), [location]);
 
@@ -27,10 +25,8 @@ export default function Popover({ label, to, skip, children }: PopoverProps) {
       onMouseLeave={() => setIsPanelOpen(false)}
       onFocus={() => {
         setIsPanelOpen(true);
-        skip && setIsSkipButtonVisible(true);
       }}
       onBlur={() => setIsPanelOpen(false)}
-      aria-expanded={skip ? isPanelOpen : false}
       aria-controls={`popover-panel-${panelId}`}
     >
       <Link onKeyDown={(e) => e.key === ' ' && navigate(to)} to={to}>
@@ -53,12 +49,6 @@ export default function Popover({ label, to, skip, children }: PopoverProps) {
           <Link aria-hidden tabIndex={99999} to={to}>
             {label}
           </Link>
-          {isSkipButtonVisible && (
-            <>
-              <hr />
-              <a href="#main-content">Ir para o conteúdo principal</a>
-            </>
-          )}
         </div>
       </Transition>
     </div>
