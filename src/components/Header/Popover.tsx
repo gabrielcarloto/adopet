@@ -29,7 +29,11 @@ export default function Popover({ label, to, children }: PopoverProps) {
       onBlur={() => setIsPanelOpen(false)}
       aria-controls={`popover-panel-${panelId}`}
     >
-      <Link onKeyDown={(e) => e.key === ' ' && navigate(to)} to={to}>
+      <Link
+        onKeyDown={(e) => e.key === ' ' && navigate(to)}
+        to={to}
+        title={label}
+      >
         {children}
       </Link>
 
@@ -46,7 +50,7 @@ export default function Popover({ label, to, children }: PopoverProps) {
           id={`popover-panel-${panelId}`}
           className="w-max p-1 absolute left-0 top-7 bg-white shadow-lg text-brand-gray-500 text-sm rounded flex flex-col gap-1"
         >
-          <Link aria-hidden tabIndex={99999} to={to}>
+          <Link aria-hidden tabIndex={900} to={to}>
             {label}
           </Link>
         </div>
