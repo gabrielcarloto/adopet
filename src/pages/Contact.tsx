@@ -184,8 +184,8 @@ export default function Contact() {
                       style={{
                         height:
                           filteredPets && filteredPets.length > 0
-                            ? 40 * filteredPets.length + 16
-                            : 40,
+                            ? 44 * filteredPets.length + 16
+                            : 44,
                       }}
                     >
                       {filteredPets && filteredPets.length >= 1 ? (
@@ -203,13 +203,15 @@ export default function Contact() {
                               >
                                 <div
                                   className={classNames(
-                                    'px-4 py-2 text-base group hover:bg-brand-gray-50 cursor-pointer',
-                                    'transition-colors flex justify-between items-center',
+                                    'px-4 py-2 text-base group cursor-pointer border-2 rounded-md border-transparent',
+                                    'flex justify-between items-center',
                                     {
                                       'hover:text-zinc-900 text-brand-gray-500':
                                         !active && !selected,
-                                      'bg-brand-gray-50 text-zinc-900': active,
-                                      'text-brand-secondary': selected,
+                                      'text-zinc-900': active && !selected,
+                                      'border-brand-primary': active,
+                                      'relative text-brand-primary before:content-["(selecionado)"] before:absolute before:left-16 before:text-xs before:text-brand-gray-300 hover:before:text-brand-gray-500':
+                                        selected,
                                     },
                                   )}
                                 >
