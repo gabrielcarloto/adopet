@@ -25,7 +25,7 @@ export default function Header() {
 
       <SkipToContent skipTo="#main-content">Pular navegação</SkipToContent>
 
-      <div className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
+      <nav className="ml-12 flex gap-14 md:gap-16 xl:gap-8">
         <Popover label="Ver pets disponíveis para adoção" to="/pets">
           <HomeIcon className="h-[23px]" aria-label="Pets" />
         </Popover>
@@ -33,7 +33,7 @@ export default function Header() {
         <Popover label="Ver mensagens" to="#">
           <MailIcon className="h-[23px]" aria-label="Mensagens" />
         </Popover>
-      </div>
+      </nav>
       {shouldUserBeVisible && (
         <Menu>
           <div className="relative flex-1 mr-10 xl:mr-44 grid place-items-end">
